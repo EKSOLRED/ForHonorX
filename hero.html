@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hero — For Honor Wiki</title>
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/hero.css" />
+
+  <!-- Scripts (defer keeps order; i18n before UI) -->
+  <script defer src="assets/js/ru.js"></script>
+  <script defer src="assets/js/en.js"></script>
+  <script defer src="assets/js/ui.js"></script>
+
+  <script defer src="assets/data/heroes.js"></script>
+  <script defer src="assets/data/perks.js"></script>
+  <script defer src="assets/data/feats.js"></script>
+  <script defer src="assets/js/pages/hero.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+
+<body data-page="hero">
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <div class="layout">
+    <aside class="sidebar" aria-label="Sidebar">
+      <a class="brand" href="index.html" aria-label="Home">
+        <div class="logo">FH</div>
+        <div>
+          <div class="brand-title">For Honor</div>
+          <div class="brand-sub" data-i18n="sidebar.subtitle">Инфо-вики</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navigation">
+        <a class="nav-link" href="index.html">
+          <span class="nav-icon">⚔</span>
+          <span data-i18n="nav.heroes">Герои</span>
+        </a>
+        <a class="nav-link" href="info.html">
+          <span class="nav-icon">ℹ</span>
+          <span data-i18n="nav.info">Основная информация</span>
+        </a>
+        <a class="nav-link" href="maps.html">
+          <span class="nav-icon">🗺</span>
+          <span data-i18n="nav.maps">Карты</span>
+        </a>
+        <a class="nav-link" href="abilities.html">
+          <span class="nav-icon">✨</span>
+          <span data-i18n="nav.abilities">Способности</span>
+        </a>
+        <a class="nav-link" href="perks.html">
+          <span class="nav-icon">◆</span>
+          <span data-i18n="nav.perks">Перки</span>
+        </a>
+        <a class="nav-link" href="terms.html">
+          <span class="nav-icon">📚</span>
+          <span data-i18n="nav.terms">Термины</span>
+        </a>
+        <a class="nav-link" href="about.html">
+          <span class="nav-icon">❤</span>
+          <span data-i18n="nav.about">О нас</span>
+        </a>
+      </nav>
+
+      <div class="langbox">
+        <div class="label" data-i18n="lang.title">Язык</div>
+        <div class="lang-actions">
+          <button class="btn" data-lang="ru" type="button">RU</button>
+          <button class="btn" data-lang="en" type="button">EN</button>
+        </div>
+        <div class="hint" data-i18n="lang.hint">Переключение сохраняется</div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="small" data-i18n="sidebar.footer">Стартовый шаблон. Дальше будем расширять.</div>
+      </div>
+    </aside>
+
+    <main class="content" data-hero-root>
+      <div class="topbar">
+        <div class="topbar-inner">
+          <button class="iconbtn" type="button" data-nav-open aria-label="Open menu">☰</button>
+          <div class="pill"><span data-crumb>…</span></div>
+          <button class="iconbtn" type="button" data-nav-close aria-label="Close menu">✕</button>
+        </div>
+      </div>
+  <div class="container container--narrow">
+  <header class="hero-top">
+        <div class="hero-banner" data-hero-banner style="--img:url('assets/img/placeholder-hero.svg');"></div>
+        <div class="hero-head">
+          <h1 class="hero-title" data-hero-title>Hero</h1>
+          <div class="hero-sub" data-hero-role>—</div>
+          <div class="hero-tags" data-hero-tags></div>
+        </div>
+      </header>
+
+      <section class="tabs">
+        <div class="tabbar tabbar--clean">
+          <button class="tabbtn active" data-tab="overview" type="button" data-i18n="hero.tabs.overview">Главное</button>
+          <button class="tabbtn" data-tab="moves" type="button" data-i18n="hero.tabs.moves">Приёмы</button>
+          <button class="tabbtn" data-tab="feats" type="button" data-i18n="hero.tabs.feats">Способности</button>
+          <button class="tabbtn" data-tab="punishes" type="button" data-i18n="hero.tabs.punishes">Наказания</button>
+          <button class="tabbtn" data-tab="executions" type="button" data-i18n="hero.tabs.executions">Добивания</button>
+        </div>
+
+        <div class="tabcontent active" id="tab-overview">
+          <div class="cols">
+            <div class="card pad card--flat">
+              <h2 class="section-title" data-i18n="hero.sections.facts">Быстрые факты</h2>
+              <div class="kv" data-facts></div>
+            </div>
+            <div class="card pad card--flat">
+              <h2 class="section-title" data-i18n="hero.sections.overview">Кратко</h2>
+              <div class="overview" data-overview></div>
+            </div>
+          </div>
+
+          <div class="card pad card--flat" style="margin-top:14px">
+            <h2 class="section-title" data-i18n="hero.sections.voice">Озвучка персонажа (Фразы в бою)</h2>
+
+            <!-- Табы озвучки -->
+
+            <div class="vo-tabs" data-vo-tabs>
+              <button class="vo-tab active" type="button" data-vo-tab="battle" data-i18n="hero.voice.tabs.battle">В бою</button>
+              <button class="vo-tab" type="button" data-vo-tab="abilities" data-i18n="hero.voice.tabs.abilities">Способности</button>
+              <button class="vo-tab" type="button" data-vo-tab="dialogs" data-i18n="hero.voice.tabs.dialogs">Ответные Диалоги</button>
+            </div>
+
+            <div class="vo-panels">
+              <div class="vo-panel active" data-vo-panel="battle"><div data-vo-list></div></div>
+              <div class="vo-panel" data-vo-panel="abilities"><div data-vo-list></div></div>
+              <div class="vo-panel" data-vo-panel="dialogs"><div data-vo-list></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tabcontent" id="tab-moves">
+          <div class="card pad card--flat">
+            <div class="section-head">
+              <h2 class="section-title" data-i18n="hero.sections.moves">Список приёмов</h2>
+              <button type="button" class="btn btn-ghost btn-sm" id="movesToggleBtn" data-label-ru="Свернуть всё" data-label-en="Collapse all">Свернуть всё</button>
+            </div>
+            <div class="list" data-moves-list></div>
+          </div>
+        </div>
+
+        <div class="tabcontent" id="tab-feats">
+          <div class="stack">
+            <div class="card pad card--flat">
+              <h2 class="section-title" data-i18n="hero.sections.feats">Способности</h2>
+              <div class="feats" data-feats></div>
+            </div>
+
+            <div class="card pad card--flat">
+              <div class="section-head">
+              <h2 class="section-title" data-i18n="hero.sections.perks">Перки</h2>
+              <button type="button" class="btn btn-ghost btn-sm" id="perkBuildBtn" data-label-ru="Подбор перков" data-label-en="Perk build">Подбор перков</button>
+            </div>
+              <div class="perks" data-perks></div>
+            </div>
+          </div>
+        </div>
+
+            <div class="tabcontent" id="tab-punishes">
+
+              <div class="card pad card--flat">
+                <div class="section-head">
+                  <div class="punishbar" data-punishbar>
+                    <button class="btn" type="button" data-punish-filter-btn>
+                      <span data-i18n="hero.punishes.filter">Фильтр</span>
+                      <span class="pill" data-punish-filter-count>Все</span>
+                      <span class="arrow" aria-hidden="true">▾</span>
+                    </button>
+
+                    <div class="pmenu" data-punish-menu aria-hidden="true">
+                      <div class="pmenu-head">
+                        <div class="muted" data-i18n="hero.punishes.filterTypes">Типы</div>
+                      </div>
+
+                      <div class="pmenu-list" data-punish-type-list></div>
+
+                      <div class="pmenu-actions">
+                        <button class="btn ghost" type="button" data-punish-reset>
+                          <span data-i18n="hero.reset">Сбросить</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h2 class="section-title" style="margin:0" data-i18n="hero.sections.punishes">Таблица наказаний</h2>
+                </div>
+
+<div class="table-wrap punish-wrap">
+                  <table class="table punish-table" data-punish-table>
+                    <thead data-punish-thead></thead>
+                    <tbody data-punish-tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+
+        <div class="tabcontent" id="tab-executions">
+          <div class="card pad card--flat">
+            <div class="exec-block" data-exec-block="hero">
+              <h2 class="section-title" style="margin:0" data-i18n="hero.sections.executionsHero">Добивания Стража</h2>
+
+              <div class="exec-controls">
+                <div class="exec-search">
+                  <input class="input" data-exec-search type="text" placeholder="Поиск по названию…" />
+                </div>
+
+                <div class="exec-heal" data-heal-filter>
+                  <button class="btn btn-sm" type="button" data-heal-btn>
+                    <span data-i18n="hero.exec.heal">Лечение</span>
+                    <span class="pill" data-heal-pill>Все</span>
+                    <span class="arrow" aria-hidden="true">▾</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="table-wrap punish-wrap exec-wrap" style="margin-top:10px">
+                <table class="table exec-table" data-exec-table>
+                  <thead data-exec-thead></thead>
+                  <tbody data-exec-tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="exec-split"></div>
+
+            <div class="exec-block" data-exec-block="common">
+              <h2 class="section-title" style="margin:0" data-i18n="hero.sections.executionsCommon">Остальные добивания Стража (Общие)</h2>
+
+              <div class="exec-controls">
+                <div class="exec-search">
+                  <input class="input" data-exec-search type="text" placeholder="Поиск по названию…" />
+                </div>
+
+                <div class="exec-heal" data-heal-filter>
+                  <button class="btn btn-sm" data-heal-btn type="button">
+                    Лечение
+                    <span class="arrow" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="table-wrap punish-wrap exec-wrap" style="margin-top:10px">
+                <table class="table exec-table" data-exec-table>
+                  <thead data-exec-thead></thead>
+                  <tbody data-exec-tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Card modal (Feats / Perks) -->
+  <div class="modal" id="cardModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cardModalTitle">
+      <div class="modal-head">
+        <div class="modal-titlebox">
+          <div class="modal-kicker" id="cardModalKicker"></div>
+          <div class="modal-title" id="cardModalTitle"></div>
+        </div>
+        <button class="iconbtn modal-close" type="button" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="cardModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Perk build modal -->
+  <div class="modal" id="perkBuildModal" aria-hidden="true">
+    <div class="modal-dialog perkbuild-dialog" role="dialog" aria-modal="true" aria-labelledby="perkBuildTitle">
+      <div class="modal-head">
+        <div class="modal-titlebox">
+          <div class="modal-kicker" id="perkBuildKicker"></div>
+          <div class="modal-title" id="perkBuildTitle"></div>
+        </div>
+        <button class="iconbtn modal-close" type="button" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="perkbuild-layout">
+          <div class="perkbuild-imgwrap">
+            <img id="perkBuildImg" alt="" loading="lazy">
+          </div>
+          <div class="perkbuild-text" id="perkBuildText"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
