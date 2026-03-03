@@ -1,1 +1,177 @@
 
+/* Hero card image (uses --img set from JS) */
+.hero-img{
+  height:110px;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.08);
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position:relative;
+  overflow:hidden;
+}
+.hero-img::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.45));
+}
+.hero-meta{padding-top:10px}
+.hero-name{
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:.2px;
+  color: var(--text);
+}
+.hero-role{
+  font-size:13px;
+  color: rgba(210,218,235,.92);
+}
+
+.home-panel{padding:16px 16px 14px}
+
+.home-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.home-title{font-weight:950;letter-spacing:.12em;text-transform:uppercase}
+.home-count{color:var(--muted);font-weight:800;font-size:12px;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.home-count .num{color:var(--text)}
+
+.filter-row{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:nowrap}
+
+.searchbox{position:relative;display:flex;align-items:center;min-width:160px;max-width:240px;flex:0 1 210px}
+.searchbox .input{padding-right:44px;width:100%}
+.clearbtn{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  width:28px;height:28px;border-radius:10px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color:var(--muted);
+  cursor:pointer;
+  display:none;
+}
+.clearbtn:hover{color:var(--text);background: rgba(255,255,255,.06)}
+
+.filters{display:flex;align-items:center;gap:8px;flex:1;min-width:0;overflow:visible}
+.filter-sep{width:1px;height:28px;background:var(--border);opacity:.85;flex:0 0 auto}
+
+.filter-group{display:flex;gap:6px;align-items:center;flex-wrap:nowrap}
+
+.fbtn{cursor:pointer;border:1px solid var(--border);background: rgba(255,255,255,.03);color:var(--muted);padding:8px 12px;border-radius:12px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px;min-height:30px;line-height:1;white-space:nowrap;flex:0 0 auto;font-size:13px}
+.fbtn .label{display:flex;align-items:center;line-height:1;margin:0}
+.fbtn .ico{font-size:15px;line-height:1;display:flex;align-items:center}
+.fbtn.active{color:var(--text);border-color: rgba(110,168,255,.32);background: rgba(110,168,255,.12)}
+
+/* Compact icon-only buttons like on the screenshot */
+.fbtn.icon{padding:5px 8px;min-width:34px;justify-content:center}
+.fbtn.icon .label{display:none}
+
+/* Show labels on wide screens */
+@media (min-width: 900px){
+  .fbtn.icon .label{display:inline}
+  .fbtn.icon{padding:5px 8px;min-width:34px;justify-content:center}
+}
+
+/* More compact hero grid on home */
+.grid.heroes{grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));gap:12px}
+.hero-card{
+  position:relative;
+  display:block;
+  padding:12px;
+  border-radius: var(--radius-lg);
+  border:1px solid rgba(255,255,255,.09);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  box-shadow: 0 18px 50px rgba(0,0,0,.28);
+  transition: transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease;
+  will-change: transform;
+}
+.hero-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 26px 70px rgba(0,0,0,.38);
+}
+.hero-card:active{ transform: translateY(-1px); }
+
+.hero-faction-icon{
+  position:absolute;
+  top:8px;
+  left:8px;
+
+  width:24px;
+  height:24px;
+
+  object-fit:contain;
+  pointer-events:none;
+}
+
+.empty{padding:18px;color:var(--muted)}
+
+
+/* --- Hover effect --- */
+.fbtn{
+  transition: background .15s ease, border-color .15s ease, transform .12s ease, color .15s ease;
+}
+.fbtn:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(110,168,255,.28);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+/* --- Icon only faction buttons with tooltip --- */
+.fbtn.icononly{
+  padding:5px 6px;
+  min-width:34px;
+  position:relative;
+}
+.fbtn.icononly .label{display:none}
+
+.fbtn.icononly::after{
+  content: attr(data-label);
+  position:absolute;
+  left:50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%) scale(.96);
+  opacity:0;
+  pointer-events:none;
+  background:#0b0f14;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:4px 8px;
+  font-size:12px;
+  white-space:nowrap;
+  color:var(--text);
+  transition: opacity .15s ease, transform .15s ease;
+  z-index:20;
+}
+.fbtn.icononly:hover::after{
+  opacity:1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* базовое состояние иконки */
+.fbtn .ico img{
+  width:32px;
+  height:32px;
+  display:block;
+  object-fit:contain;
+}
+
+/* === Theme overrides (topbar layout) === */
+.home-panel{
+  margin-top: 14px;
+}
+.filter-row{flex-wrap:wrap}
+.searchbox .input{background: rgba(17,24,42,.55)}
+/* make hero cards pop */
+.hero-card, .hero-tile, .hero-item, .hero-card{
+  border-radius: var(--radius-lg);
+}
+
+
+.hero-img{
+  transition: transform .18s ease, filter .18s ease;
+}
+.hero-card:hover .hero-img{
+  transform: scale(1.03);
+  filter: saturate(1.06) contrast(1.03);
+}
