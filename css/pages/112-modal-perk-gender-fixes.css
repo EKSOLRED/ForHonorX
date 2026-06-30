@@ -1,0 +1,63 @@
+/* Текущие правки: ячейки таблицы перков, блокировка прокрутки модалок и внешние кнопки закрытия. */
+
+html.modal-scroll-locked,
+body.modal-scroll-locked {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body.modal-scroll-locked {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.item-modal-header {
+  padding-right: 0;
+}
+
+.video-player-topbar {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.video-player-topbar .video-source-tabs {
+  justify-self: center;
+}
+
+.table-wrap .perk-builder-select-table tbody tr:last-child td:first-child,
+.item-modal.is-perk-builder-modal .perk-builder-select-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0;
+}
+
+.perk-builder-pick {
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  color: color-mix(in srgb, var(--text) 94%, var(--accent-2));
+  font-weight: 850;
+  letter-spacing: .01em;
+}
+
+.perk-builder-pick span,
+.perk-builder-pick em {
+  display: contents;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.perk-builder-row.rarity-heroic .perk-builder-tier,
+.perk-builder-row.rarity-heroic .perk-builder-option {
+  color: #111;
+}
+
+@media (max-width: 760px) {}
+
+/* Последняя видимая строка начинается с ячейки варианта из-за rowspan у уровня; она не должна выглядеть как угол таблицы. */
+.table-wrap table.perk-builder-select-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0;
+}

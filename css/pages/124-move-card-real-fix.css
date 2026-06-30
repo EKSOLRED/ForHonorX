@@ -1,0 +1,127 @@
+/* === ХОТФИКС: 4 КАРТОЧКИ В РЯД И ВИДИМЫЕ ЗНАЧЕНИЯ ПОЛЕЙ === */
+/*
+  Предыдущая правка пыталась превратить table/tr/td в grid. В браузере это
+  вело себя нестабильно: правая колонка значений фактически исчезала.
+  Поэтому второстепенные поля теперь рендерятся как обычный список div-строк.
+*/
+.tab-panel[data-tab-panel="moves"] .move-accordion-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.25vw, 20px);
+  align-items: start;
+}
+
+.tab-panel[data-tab-panel="moves"] .move-frame-card.move-card-v2 {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  align-self: start;
+}
+
+.move-detail-table-wrap {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.move-detail-list {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+}
+
+.move-detail-row {
+  display: grid;
+  grid-template-columns: minmax(94px, 42%) minmax(0, 58%);
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+}
+
+.move-detail-row + .move-detail-row {
+  border-top: 1px solid rgba(255, 255, 255, .07);
+}
+
+.move-detail-label,
+.move-detail-value {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 9px 10px;
+}
+
+.move-detail-label {
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 950;
+  letter-spacing: .075em;
+  line-height: 1.18;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.move-detail-value {
+  justify-content: flex-end;
+  color: var(--text);
+  background: rgba(0, 0, 0, .24);
+  font-size: .84rem;
+  font-weight: 900;
+  line-height: 1.16;
+  text-align: right;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+
+.move-detail-value > * {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.move-detail-value .move-hitstun-dots {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.move-detail-value .move-feature-badge {
+  max-width: 100%;
+  margin-left: auto;
+  white-space: normal;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Старую table-разметку оставляем поддержанной на случай кеша, но больше не полагаемся на неё. */
+.move-detail-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.move-detail-table th {
+  width: 42%;
+}
+
+.move-detail-table td {
+  width: 58%;
+}
+
+@media (max-width: 1240px) {
+  .tab-panel[data-tab-panel="moves"] .move-accordion-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 920px) {
+  .tab-panel[data-tab-panel="moves"] .move-accordion-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .tab-panel[data-tab-panel="moves"] .move-accordion-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .move-detail-row {
+    grid-template-columns: minmax(100px, 42%) minmax(0, 58%);
+  }
+}

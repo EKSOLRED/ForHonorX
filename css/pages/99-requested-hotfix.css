@@ -1,0 +1,306 @@
+/* Запрошенный хотфикс: только иконка навигации, отступы действий строки тира, z-index карточек, чистка трека скроллбара. */
+
+/* 1. Навигатор разделов: бургер-иконка. */
+.section-jump-toggle svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Откат переопределений предпросмотра/закрытия из round-4 к прежнему поведению модалки. */
+.tier-preview-modal .tier-modal-card {
+  width: min(1240px, calc(100vw - 28px));
+  height: calc(100dvh - 28px);
+  max-height: calc(100dvh - 28px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.tier-preview-modal .item-modal-header {
+  flex: 0 0 auto;
+  margin-bottom: initial;
+}
+.tier-preview-modal .modal-close,
+.tier-preview-modal .tier-modal-card > .modal-close {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  font-size: 1.35rem;
+  border-radius: 14px;
+}
+.tier-preview-modal .modal-close::before {
+  content: none;
+}
+.tier-image-preview {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 8px 0 12px;
+}
+.tier-image-preview img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+.tier-preview-actions {
+  flex: 0 0 auto;
+}
+
+/* Откат позиции и цвета меток пола из round-4. */
+.hero-detail-poster .hero-gender-tags {
+  left: clamp(28px, 6vw, 70px);
+  bottom: clamp(18px, 3.2vw, 34px);
+  background: transparent;
+}
+.hero-detail-poster .hero-gender-tags span {
+  background: rgba(10, 12, 16, .52);
+  border-color: rgba(214, 172, 95, .32);
+}
+
+/* 2. Пользовательский тир-лист: левый край колонки действий ближе к кнопкам. */
+.tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 236px;
+}
+.tier-table-locked .tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 0;
+}
+.tier-row-tools {
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 7px;
+  padding: 8px 8px;
+}
+.tier-row-tools .tier-icon-btn {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+}
+
+/* 3. Перки/способности: карточки при hover остаются ниже шапки и любой модалки. */
+.ability-card-recommend {
+  z-index: 25;
+}
+.feat-card.ability-like-card:hover,
+.feat-card.ability-like-card:focus-within,
+.perk-card.ability-like-card:hover,
+.perk-card.ability-like-card:focus-within,
+.catalog-ability-list .feat-card:hover,
+.catalog-ability-list .feat-card:focus-within,
+.catalog-ability-list .perk-card:hover,
+.catalog-ability-list .perk-card:focus-within {
+  z-index: 20;
+}
+.modal,
+.modal.is-open {
+  z-index: 1000;
+}
+.site-header {
+  z-index: 100;
+}
+
+/* 4. Скроллбары: без видимого фона трека, только ползунок и нативные стрелки. */
+::-webkit-scrollbar {
+  background: transparent;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner {
+  background: transparent;
+  border: 0;
+}
+::-webkit-scrollbar-thumb {
+  border-color: transparent;
+  background-clip: padding-box;
+}
+html,
+* {
+  scrollbar-color: var(--accent) transparent;
+}
+
+@media (max-width: 1020px) {
+  .tier-table-row {
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+}
+
+
+/* Таблица наказаний: столбец урона должен оставаться компактным. */
+.punishment-table th:nth-child(3),
+.punishment-table td:nth-child(3) {
+  width: 86px;
+  max-width: 86px;
+  min-width: 72px;
+  white-space: nowrap;
+}
+.punishment-table th:nth-child(2),
+.punishment-table td:nth-child(2) {
+  width: auto;
+}
+
+/* v31: багфикс таблицы наказаний — фильтр не растягивает всю страницу, числовые столбцы подстраиваются под содержимое. */
+.punishment-table {
+  table-layout: auto;
+}
+
+.punishment-table .heal-filter-menu {
+  max-height: min(420px, calc(100vh - 180px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+
+.punishment-table th:nth-child(3),
+.punishment-table td:nth-child(3),
+.punishment-table th:nth-child(4),
+.punishment-table td:nth-child(4) {
+  width: 1%;
+  min-width: max-content;
+  max-width: none;
+  white-space: nowrap;
+}
+
+.punishment-table th:nth-child(3),
+.punishment-table th:nth-child(4) {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.punishment-table td:nth-child(3),
+.punishment-table td:nth-child(4) {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.punishment-table th:nth-child(2),
+.punishment-table td:nth-child(2) {
+  width: auto;
+  min-width: 260px;
+}
+
+/* v31: точечная правка — фильтр наказаний не растягивает страницу и не создаёт второй скроллбар. */
+.punishment-table .heal-filter-menu.is-floating-filter {
+  position: fixed;
+  top: var(--fh-filter-top, 80px);
+  left: var(--fh-filter-left, 50vw);
+  transform: translateX(calc(-50% + var(--fh-filter-shift-x, 0px)));
+  max-height: var(--fh-filter-max-height, calc(100vh - 120px));
+  max-width: calc(100vw - 24px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: auto;
+  z-index: 100500;
+}
+
+.punishment-table .heal-filter-menu.is-floating-filter .heal-filter-option,
+.punishment-table .heal-filter-menu.is-floating-filter .heal-filter-reset {
+  white-space: nowrap;
+}
+
+/* Расширяем только контент вкладок добиваний/наказаний героя; остальные вкладки сохраняют старую ширину. */
+.hero-tabs[data-active-tab="executions"] .tab-panel[data-tab-panel="executions"].is-active,
+.hero-tabs[data-active-tab="punishments"] .tab-panel[data-tab-panel="punishments"].is-active {
+  width: min(1680px, calc(100vw - 48px));
+  max-width: calc(100vw - 48px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Страница общих добиваний: таблица почти на всю ширину страницы. */
+#commonExecutionsTable {
+  width: min(1680px, calc(100vw - 48px));
+  max-width: calc(100vw - 48px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 720px) {
+  .hero-tabs[data-active-tab="executions"] .tab-panel[data-tab-panel="executions"].is-active,
+  .hero-tabs[data-active-tab="punishments"] .tab-panel[data-tab-panel="punishments"].is-active,
+  #commonExecutionsTable {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+  }
+}
+
+
+/* v31 final width + punishment filter fix.
+   The whole site uses the wider layout, and the punishment filter no longer creates a page-level scrollbar. */
+:root {
+  --content-max: 1680px;
+}
+
+main,
+.hero-page,
+.map-page,
+.site-footer {
+  width: min(var(--content-max), calc(100% - 48px));
+  max-width: calc(100% - 48px);
+}
+
+.page-shell,
+.section,
+.detail-section,
+.tab-panel,
+.table-block,
+.table-wrap {
+  max-width: 100%;
+}
+
+.hero-tabs.reveal.is-visible,
+.detail-section.hero-tabs.reveal.is-visible {
+  transform: none;
+}
+
+.punishment-table .heal-filter-menu.is-floating-filter {
+  position: fixed;
+  top: var(--fh-filter-top, 80px);
+  left: var(--fh-filter-left, 50vw);
+  transform: translateX(calc(-50% + var(--fh-filter-shift-x, 0px)));
+  max-height: none;
+  overflow: visible;
+  overscroll-behavior: auto;
+  contain: layout paint style;
+}
+
+.punishment-table .heal-filter-menu.is-floating-filter:focus,
+.punishment-table .heal-filter-menu.is-floating-filter:focus-within,
+.punishment-table .heal-filter-option:focus,
+.punishment-table .heal-filter-option:focus-within {
+  outline: none;
+}
+
+.punishment-table th:nth-child(3),
+.punishment-table td:nth-child(3),
+.punishment-table th:nth-child(4),
+.punishment-table td:nth-child(4) {
+  width: 1%;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+.punishment-table th:nth-child(3),
+.punishment-table th:nth-child(4) {
+  min-width: 118px;
+}
+
+@media (max-width: 720px) {
+  main,
+  .hero-page,
+  .map-page,
+  .site-footer {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+  }
+}

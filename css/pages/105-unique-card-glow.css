@@ -1,0 +1,29 @@
+/* Акцент для уникальных способностей: один чистый контур без двойной внутренней обводки. */
+.feat-card.ability-like-card.is-unique-card,
+.catalog-card.ability-like-card.is-unique-card {
+  border-color: rgba(246, 196, 83, .82);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(246, 196, 83, .18), transparent 38%),
+    linear-gradient(145deg, rgba(246, 196, 83, .12), rgba(20, 16, 10, .94) 42%, rgba(16, 14, 11, .96));
+  box-shadow: 0 18px 44px rgba(246, 196, 83, .11);
+}
+
+.feat-card.ability-like-card.is-unique-card::after,
+.catalog-card.ability-like-card.is-unique-card::after {
+  content: none;
+}
+
+.feat-card.ability-like-card.is-unique-card:hover,
+.feat-card.ability-like-card.is-unique-card:focus-within,
+.catalog-card.ability-like-card.is-unique-card:hover,
+.catalog-card.ability-like-card.is-unique-card:focus-within {
+  border-color: rgba(255, 214, 117, .92);
+  box-shadow: 0 22px 54px rgba(246, 196, 83, .16);
+}
+
+.feat-card.ability-like-card.is-unique-card .ability-badge.is-unique,
+.catalog-card.ability-like-card.is-unique-card .ability-badge.is-unique {
+  background: rgba(246, 196, 83, .18);
+  border-color: rgba(246, 196, 83, .58);
+  color: #ffd77a;
+}

@@ -1,0 +1,106 @@
+/* Лавровые скобки репутации в таблицах подбора перков и действии на странице сборки. */
+.reputation-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  white-space: nowrap;
+  color: currentColor;
+  line-height: 1;
+}
+
+.reputation-wreath-mark {
+  font-weight: inherit;
+  letter-spacing: 0;
+}
+
+.reputation-value {
+  display: inline-block;
+  min-width: 2.2em;
+  text-align: center;
+  line-height: 1;
+}
+
+.reputation-wreath {
+  display: inline-block;
+  width: .58em;
+  height: 1.26em;
+  flex: 0 0 auto;
+  background: currentColor;
+  vertical-align: -0.18em;
+}
+
+.reputation-wreath-left {
+  -webkit-mask: url("../../assets/Reputation-Icon-Left.svg") center / contain no-repeat;
+  mask: url("../../assets/Reputation-Icon-Left.svg") center / contain no-repeat;
+}
+
+.reputation-wreath-right {
+  -webkit-mask: url("../../assets/Reputation-Icon-Right.svg") center / contain no-repeat;
+  mask: url("../../assets/Reputation-Icon-Right.svg") center / contain no-repeat;
+}
+
+/* Оставлено для старых inline-иконок, если где-то сохранилась старая разметка. */
+.reputation-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  background: currentColor;
+  vertical-align: -0.14em;
+  -webkit-mask: url("../../assets/Reputation-Icon.svg") center / contain no-repeat;
+  mask: url("../../assets/Reputation-Icon.svg") center / contain no-repeat;
+}
+
+.perk-builder-tier {
+  padding-inline: 12px;
+}
+
+.perk-builder-tier-name {
+  display: block;
+}
+
+.perk-builder-tier .reputation-mark {
+  display: flex;
+  margin: 4px auto 0;
+}
+
+.perk-builder-pick {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: color-mix(in srgb, var(--text) 96%, var(--accent-2));
+  box-shadow: none;
+}
+
+.item-modal.is-perk-builder-modal .table-wrap table.perk-builder-select-table tbody tr:last-child td.perk-builder-option:first-child,
+.item-modal.is-perk-builder-modal .perk-builder-select-table tbody tr:last-child .perk-builder-option,
+.table-wrap table.perk-builder-select-table tbody tr:last-child td.perk-builder-option:first-child {
+  border-bottom-left-radius: 0;
+}
+
+.build-perk-table-action {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 22px;
+}
+
+.build-perk-table-action .btn {
+  min-height: 42px;
+}
+
+@media (max-width: 760px) {
+  .build-perk-table-action {
+    justify-content: center;
+    margin: 14px 0 18px;
+  }
+}
+
+.reputation-note-icon,
+.perk-builder-notes .reputation-mark {
+  margin: 0 2px;
+  vertical-align: middle;
+}
+
+.perk-builder-notes .reputation-mark {
+  color: var(--accent-2);
+  font-weight: 900;
+}

@@ -1,0 +1,146 @@
+/* === ПРАВКИ: НОВОСТИ, ПАТЧНОУТЫ И ИСТОЧНИКИ ПРОЕКТА === */
+/* Контент слайдера поднят выше затемняющих слоёв: фон остаётся тёмным, а текст и кнопки читаются нормально. */
+.news-slider::before {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.news-slide {
+  z-index: 0;
+}
+
+.news-slide.is-active {
+  z-index: 2;
+}
+
+.news-slide .patchnote-image {
+  z-index: 0;
+}
+
+.news-slide .patchnote-image::after {
+  z-index: 1;
+}
+
+.news-slide-content {
+  z-index: 4;
+  color: var(--text);
+  opacity: 1;
+}
+
+.news-slide-content .patchnote-meta,
+.news-slide-content h3,
+.news-slide-content p,
+.news-slide-content .btn {
+  opacity: 1;
+}
+
+.news-slide-content p:not(.patchnote-meta) {
+  color: color-mix(in srgb, var(--text) 92%, white);
+}
+
+/* Стрелки слайдера теперь без дополнительных CSS-наконечников и без круглых бейджей. */
+.patchnotes-btn {
+  width: 54px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  color: var(--accent-2);
+  font-size: 0;
+}
+
+.patchnotes-btn::before {
+  position: static;
+  display: block;
+  width: auto;
+  height: auto;
+  border: 0;
+  background: transparent;
+  color: currentColor;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.35rem;
+  font-weight: 400;
+  line-height: 1;
+  transform: none;
+}
+
+.patchnotes-btn::after {
+  content: none;
+}
+
+.patchnotes-btn[data-patchnotes-prev]::before {
+  content: "←";
+  transform: none;
+}
+
+.patchnotes-btn[data-patchnotes-next]::before {
+  content: "→";
+  transform: none;
+}
+
+.patchnotes-btn:hover,
+.patchnotes-btn:focus-visible {
+  color: var(--text);
+  transform: translateX(var(--arrow-shift, 0));
+}
+
+/* Страница патчноутов. */
+.patchnotes-page .page-title {
+  padding-top: clamp(42px, 6vw, 76px);
+}
+
+.patchnotes-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 26px);
+}
+
+.patchnotes-detail-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(20px, 2.6vw, 30px);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: clamp(22px, 2.4vw, 32px);
+  background:
+    radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 34%),
+    color-mix(in srgb, var(--bg-card) 88%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.patchnotes-detail-card h3 {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 3.4vw, 3.6rem);
+}
+
+.patchnotes-detail-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+.patchnotes-detail-card li::marker {
+  color: var(--accent-2);
+}
+
+/* Блок «Кто держит щит проекта» теперь является основной страницей источников. */
+#project-shield {
+  scroll-margin-top: 120px;
+}
+
+.about-helper-link {
+  cursor: pointer;
+}
+
+.about-helper-link:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 4px;
+}
+
+@media (max-width: 960px) {
+  .patchnotes-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,205 @@
+/* Слайдер патчноутов на главной заменяет старые блоки фракций, режимов и боя. */
+.patchnotes-section {
+  position: relative;
+}
+
+.patchnotes-controls {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.patchnotes-btn,
+.patchnotes-dots button {
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform var(--speed), border-color var(--speed), background var(--speed);
+}
+
+.patchnotes-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  font-size: 2rem;
+  line-height: 1;
+  display: inline-grid;
+  place-items: center;
+}
+
+.patchnotes-btn:hover,
+.patchnotes-btn:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 20%, var(--bg-card));
+  outline: none;
+}
+
+.patchnotes-slider {
+  position: relative;
+  min-height: 430px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--bg-card) 94%, #241510), color-mix(in srgb, var(--bg-card) 76%, transparent));
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.patchnote-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(320px, 44%) 1fr;
+  gap: 30px;
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(24px);
+  transition: opacity 280ms ease, transform 320ms ease;
+}
+
+.patchnote-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.patchnote-image {
+  min-height: 320px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+}
+
+.patchnote-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.patchnote-content {
+  align-self: center;
+}
+
+.patchnote-meta {
+  margin: 0 0 12px;
+  color: var(--accent-2);
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .78rem;
+}
+
+.patchnote-content h3 {
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+}
+
+.patchnote-content ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  font-weight: 650;
+  line-height: 1.75;
+}
+
+.patchnotes-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.patchnotes-dots button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.patchnotes-dots button.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.18);
+}
+
+@media (max-width: 900px) {
+  .patchnote-slide {
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+
+  .patchnotes-slider {
+    min-height: 680px;
+  }
+
+  .patchnote-image {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 640px) {
+  .patchnotes-section .section-heading.split {
+    gap: 18px;
+  }
+
+  .patchnotes-controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .patchnote-slide {
+    padding: 20px;
+  }
+}
+
+
+/* Полировка выравнивания элементов управления патчноутами. */
+.patchnotes-section .section-heading.split {
+  display: block;
+}
+
+.patchnotes-section .section-heading.split > div:first-child {
+  max-width: 760px;
+}
+
+.patchnotes-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 18px auto 22px;
+}
+
+.patchnotes-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 0;
+  line-height: 1;
+}
+
+.patchnotes-btn::before {
+  display: block;
+  font-size: 1.75rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.patchnotes-btn[data-patchnotes-prev]::before {
+  content: "‹";
+}
+
+.patchnotes-btn[data-patchnotes-next]::before {
+  content: "›";
+}
+
+@media (max-width: 640px) {
+  .patchnotes-controls {
+    justify-content: center;
+    margin: 14px auto 18px;
+  }
+}

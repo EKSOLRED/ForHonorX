@@ -1,0 +1,45 @@
+/* === ТЕКУЩИЕ ПРАВКИ: ПАТЧИ И ПОИСК === */
+/* Списки в карточках патчей: даты оставлены внутри пунктов, чтобы блок легко редактировался после уточнения дорожной карты. */
+.home-patch-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+.home-patch-list ul {
+  display: grid;
+  gap: 7px;
+  margin: 8px 0 0;
+  padding-left: 1.1rem;
+}
+
+.home-patch-list li::marker {
+  color: var(--accent-2);
+}
+
+/* Единая иконка лупы для всех поисковых полей: глобальный поиск, каталоги, таблицы и выбор героя. */
+input[type="search"] {
+  --search-icon-size: 18px;
+  --search-icon-left: 15px;
+  padding-left: calc(var(--search-icon-left) + var(--search-icon-size) + 10px);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffcf77' stroke-width='2.35' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4.5 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: var(--search-icon-left) 50%;
+  background-size: var(--search-icon-size) var(--search-icon-size);
+}
+
+.global-search input[type="search"] {
+  --search-icon-left: 16px;
+  --search-icon-size: 17px;
+}
+
+.hero-picker-search,
+.table-search-box input[type="search"] {
+  --search-icon-left: 14px;
+  --search-icon-size: 17px;
+}

@@ -1,0 +1,44 @@
+/* Финальные штрихи: hover закрытия плеера, широкие карточки участников, видеокарточки только с названием и стиль кнопок постера. */
+
+/* Отдельная кнопка закрытия плеера не смещается при hover/focus. */
+.video-player-close:hover,
+.video-player-close:focus-visible {
+  transform: translateY(-50%);
+}
+
+/* Участники: карточки шире, строки остаются выровненными слева и переносятся естественно. */
+.contributors-grid {
+  grid-template-columns: repeat(auto-fit, minmax(420px, 510px));
+}
+
+/* Видеокарточки везде: видимым остаётся только название. */
+.guide-video-card small {
+  display: none;
+}
+
+.guide-video-card strong {
+  margin-top: 0;
+}
+
+/* Кнопки действий постера: тот же заполненный стиль, что у первых двух кнопок на главной. */
+.home-hero .hero-actions .btn,
+.hero-detail-poster .hero-poster-actions .btn {
+  color: #201208;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+}
+
+.home-hero .hero-actions .btn:hover,
+.home-hero .hero-actions .btn:focus-visible,
+.hero-detail-poster .hero-poster-actions .btn:hover,
+.hero-detail-poster .hero-poster-actions .btn:focus-visible {
+  color: #201208;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+}
+
+@media (max-width: 760px) {
+  .contributors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}

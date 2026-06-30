@@ -1,0 +1,331 @@
+/* Раунд правок: фильтр наказаний, визуал главной, мобильные таблицы и мобильное меню. */
+
+/* 1. Фильтр наказаний: всплывающее окно не увеличивает высоту страницы. */
+.punishment-table .heal-filter-menu,
+.punishment-table .heal-filter-menu.is-floating-filter {
+  position: fixed;
+  top: var(--fh-filter-top, 96px);
+  left: var(--fh-filter-left, 50vw);
+  right: auto;
+  bottom: auto;
+  transform: translateX(-50%);
+  max-height: min(430px, calc(100dvh - var(--fh-filter-top, 96px) - 18px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 120000;
+  contain: layout paint style;
+  overscroll-behavior: contain;
+  min-width: min(420px, calc(100vw - 28px));
+}
+.punishment-table .heal-filter-menu[hidden] {
+  display: none;
+}
+.punishment-table .heal-filter-option,
+.punishment-table .heal-filter-reset {
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+}
+
+/* 2. Разделы перков по типам: цветные заголовки. */
+.perk-type-tier.perk-type-attack .ability-tier-label {
+  color: #ffd8d8;
+  border-color: rgba(255, 97, 97, .48);
+  background: linear-gradient(180deg, rgba(126, 23, 23, .48), rgba(40, 10, 10, .34));
+  box-shadow: inset 0 0 0 1px rgba(255, 132, 132, .12);
+}
+.perk-type-tier.perk-type-defense .ability-tier-label {
+  color: #d9f0ff;
+  border-color: rgba(93, 190, 255, .5);
+  background: linear-gradient(180deg, rgba(20, 76, 118, .5), rgba(8, 31, 52, .36));
+  box-shadow: inset 0 0 0 1px rgba(142, 215, 255, .12);
+}
+.perk-type-tier.perk-type-support .ability-tier-label {
+  color: #dfffd3;
+  border-color: rgba(145, 242, 111, .48);
+  background: linear-gradient(180deg, rgba(45, 111, 39, .5), rgba(14, 45, 17, .36));
+  box-shadow: inset 0 0 0 1px rgba(186, 255, 159, .12);
+}
+
+/* 3. Заголовки карточек глоссария уменьшены. */
+.glossary-card h2 {
+  font-size: clamp(1.12rem, 1.2vw, 1.55rem);
+  line-height: 1.08;
+}
+
+/* 4. Карточки карт: лёгкий узор справа. */
+.map-list-card,
+.map-card {
+  position: relative;
+  overflow: hidden;
+}
+.map-list-card::before,
+.map-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -8%;
+  width: 42%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .18;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 210, 128, .26), transparent 23%),
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(255, 210, 128, .12) 12px 14px),
+    linear-gradient(90deg, transparent, rgba(255, 210, 128, .10));
+  mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 100%);
+  z-index: 0;
+}
+.map-list-card > *,
+.map-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 5. Визуал главной страницы. */
+.hero-bg-media {
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--bg) 76%, transparent), transparent 70%), url('../../assets/home/main-poster.jpg');
+  opacity: .72;
+  background-position: center center;
+  background-size: cover;
+}
+.quick-card {
+  position: relative;
+  overflow: hidden;
+}
+.quick-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .12;
+  background:
+    radial-gradient(circle at 85% 14%, rgba(255, 207, 119, .44), transparent 18%),
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.16) 14px 15px),
+    linear-gradient(135deg, transparent, rgba(255, 207, 119, .10));
+  transition: opacity var(--speed), transform var(--speed);
+}
+.quick-card:hover::before {
+  opacity: .22;
+  transform: translateX(-4px);
+}
+.home-panel-factions,
+.home-panel-modes,
+.home-panel-combat {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.home-panel-factions::before,
+.home-panel-modes::before,
+.home-panel-combat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  opacity: .36;
+  filter: saturate(.92) contrast(1.02);
+}
+.home-panel-factions::after,
+.home-panel-modes::after,
+.home-panel-combat::after {
+  inset: 0;
+  height: auto;
+  opacity: 1;
+  transform: none;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(16, 12, 9, .93), rgba(16, 12, 9, .72) 48%, rgba(16, 12, 9, .36)),
+    radial-gradient(circle at 80% 18%, rgba(255, 207, 119, .18), transparent 28%);
+}
+.mini-codex .mini-codex-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: inherit;
+  cursor: pointer;
+  transition: transform var(--speed), border-color var(--speed), background var(--speed), box-shadow var(--speed);
+}
+.mini-codex .mini-codex-card:hover,
+.mini-codex .mini-codex-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 52%, var(--line));
+  background: linear-gradient(180deg, rgba(255, 207, 119, .08), rgba(255, 255, 255, .025));
+  box-shadow: var(--shadow-soft);
+  outline: none;
+}
+.home-mini-modal .modal-card {
+  max-width: 620px;
+}
+
+/* 8. Кнопка закрытия мобильного меню остаётся видимой. */
+@media (max-width: 1160px) {
+  .burger {
+    z-index: 1300;
+  }
+  .burger.is-open {
+    position: fixed;
+    top: 14px;
+    right: 28px;
+    z-index: 1302;
+    background: color-mix(in srgb, var(--bg-card) 92%, #000);
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+    box-shadow: var(--shadow-soft);
+  }
+  .site-nav {
+    z-index: 1301;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .site-nav .nav-group.is-open .nav-submenu {
+    max-height: min(52dvh, 440px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+/* 9. Подсказка и кнопка проф. тир-листа на мобильных остаются в пределах экрана. */
+@media (max-width: 640px) {
+  .tierlist-card-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+  .tierlist-card-head .btn {
+    justify-self: start;
+    max-width: 100%;
+  }
+  .tierlists-page .tierlist-source.tierlist-source-star .verified-tooltip {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    top: 112px;
+    width: auto;
+    max-width: none;
+    transform: translateY(8px) scale(.98);
+    z-index: 140000;
+  }
+  .tierlists-page .tierlist-source.tierlist-source-star:hover .verified-tooltip,
+  .tierlists-page .tierlist-source.tierlist-source-star:focus-visible .verified-tooltip,
+  .tierlists-page .tierlist-source.tierlist-source-star:focus-within .verified-tooltip {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 10. Таблицы на мобильных: горизонтальная прокрутка без сжатых столбцов. */
+@media (max-width: 820px) {
+  .table-block,
+  .table-toolbar,
+  .table-search-box {
+    max-width: 100%;
+    width: 100%;
+  }
+  .table-wrap,
+  .table-block .table-wrap,
+  .item-modal-card .table-wrap,
+  .compact-table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 18px;
+  }
+  .table-wrap table,
+  .table-wrap .sortable-table,
+  .sortable-table,
+  .compact-table table {
+    width: max-content;
+    min-width: 760px;
+    table-layout: auto;
+  }
+  .execution-table,
+  .common-executions-table {
+    min-width: 980px;
+  }
+  .punishment-table {
+    min-width: 920px;
+  }
+  .item-modal-card .compact-table table {
+    min-width: 560px;
+  }
+  .sortable-table th,
+  .sortable-table td,
+  .table-wrap table th,
+  .table-wrap table td {
+    white-space: normal;
+    min-width: 112px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .sortable-table th,
+  .table-wrap table th {
+    white-space: nowrap;
+  }
+  .punishment-table th:nth-child(1),
+  .punishment-table td:nth-child(1) { min-width: 210px; }
+  .punishment-table th:nth-child(2),
+  .punishment-table td:nth-child(2) { min-width: 280px; }
+  .punishment-table th:nth-child(3),
+  .punishment-table td:nth-child(3),
+  .punishment-table th:nth-child(4),
+  .punishment-table td:nth-child(4) { min-width: 132px; white-space: nowrap; }
+}
+
+/* 11. Мобильная вертикаль: центрируем карточки перков и способностей. */
+@media (max-width: 760px) {
+  .catalog-ability-list .ability-tier-cards,
+  .tab-panel[data-tab-panel="feats"] .ability-tier-cards,
+  .tab-panel[data-tab-panel="perks"] .perk-card-grid,
+  .tab-panel[data-tab-panel="perks"] .ability-tier-cards {
+    justify-items: center;
+  }
+  .feat-card.ability-like-card,
+  .perk-card.ability-like-card,
+  .catalog-card.ability-like-card {
+    width: min(100%, 340px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* 12. Предпросмотр места вставки при перетаскивании в тир-листе. */
+.tier-drop-placeholder {
+  display: inline-block;
+  width: 78px;
+  height: 78px;
+  border-radius: 18px;
+  border: 2px dashed color-mix(in srgb, var(--accent) 72%, transparent);
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  opacity: .62;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+.tier-dropzone .tier-drop-placeholder,
+.tier-hero-pool .tier-drop-placeholder {
+  align-self: center;
+}
+.tier-hero-token.is-dragging {
+  opacity: .42;
+}
+
+@media (max-width: 820px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  .tier-hero-token {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}

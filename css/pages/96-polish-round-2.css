@@ -1,0 +1,253 @@
+/* v36: второй раунд полировки редактора тиров, меток постера героя и микро-взаимодействий страниц. */
+
+
+/* Карточки тир-листа и бейдж автора */
+.tierlist-title-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.tierlist-title-line h2 { margin: 0; }
+.tierlist-source {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--accent-2);
+  border: 1px solid rgba(214, 172, 95, .38);
+  border-radius: 999px;
+  background: rgba(24, 18, 14, .98);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+.tierlist-source svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.tierlist-source .fx-tooltip,
+.tierlist-source .verified-tooltip {
+  top: 50%;
+  left: calc(100% + 12px);
+  right: auto;
+  transform: translate(-6px, -50%);
+}
+.tierlist-source:hover .fx-tooltip,
+.tierlist-source:focus-visible .fx-tooltip,
+.tierlist-source:focus-within .fx-tooltip {
+  transform: translate(0, -50%);
+}
+
+/* Пользовательское название тира */
+.tier-custom-title {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 520px);
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-weight: 850;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.tier-custom-title input {
+  width: 100%;
+}
+
+/* Компактные метки тиров и более сильный кроп портретов */
+.tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 204px;
+}
+.tier-table-locked .tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 0;
+}
+.tier-label-cell {
+  padding: 6px;
+  font-size: clamp(.72rem, .9vw, 1rem);
+  letter-spacing: .015em;
+  line-height: .95;
+}
+.tier-hero-token img {
+  object-position: 50% 2%;
+  transform: scale(2.38);
+  transform-origin: 50% 8%;
+}
+
+/* Модалка настроек строки: цветной квадрат и inline-кнопки */
+.tier-settings-color-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tier-settings-color-line > span {
+  margin-right: 2px;
+}
+.tier-settings-form .tier-color-square,
+.tier-settings-form input.tier-color-square[type="color"] {
+  flex: 0 0 42px;
+  inline-size: 42px;
+  block-size: 42px;
+  width: 42px;
+  min-width: 42px;
+  max-width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(255, 207, 119, .38);
+  border-radius: 12px;
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.tier-settings-form input.tier-color-square[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.tier-settings-form input.tier-color-square[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: 10px;
+}
+.tier-settings-form input.tier-color-square[type="color"]::-moz-color-swatch {
+  border: 0;
+  border-radius: 10px;
+}
+.tier-settings-color-line .btn {
+  flex: 1 1 180px;
+  min-width: min(100%, 170px);
+  max-width: 260px;
+  min-height: 40px;
+  padding-inline: clamp(10px, 2vw, 16px);
+  white-space: normal;
+  text-align: center;
+}
+
+/* Модалка предпросмотра: изображение не внутри видимого бейджа, но масштабируется под окно. */
+.tier-preview-modal .tier-modal-card {
+  width: min(1220px, calc(100vw - 28px));
+  max-height: calc(100vh - 28px);
+  overflow: hidden;
+}
+.tier-image-preview {
+  margin: 10px 0 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  min-height: 0;
+}
+.tier-image-preview img {
+  display: block;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  max-height: calc(100vh - 230px);
+  height: auto;
+  object-fit: contain;
+}
+
+/* Постер героя: метки пола расположены внизу постера. */
+.hero-detail-poster .detail-poster-content {
+  align-items: stretch;
+}
+.hero-detail-poster .detail-poster-text {
+  align-self: center;
+  padding-bottom: 54px;
+}
+.hero-detail-poster .hero-gender-tags {
+  position: absolute;
+  z-index: 5;
+  left: clamp(28px, 6vw, 70px);
+  bottom: clamp(18px, 3.2vw, 34px);
+  margin-top: 0;
+}
+
+/* Счётчик каталога героев */
+.hero-filter-bar {
+  align-items: center;
+}
+.hero-count-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  margin-left: 18px;
+  padding: 8px 12px;
+  border: 1px solid rgba(214, 172, 95, .24);
+  border-radius: 999px;
+  background: rgba(16, 13, 10, .82);
+  color: var(--muted);
+  font-weight: 850;
+  white-space: nowrap;
+}
+.hero-count-stat strong {
+  color: var(--accent-2);
+  font-weight: 1000;
+}
+
+/* Hover глоссария */
+.glossary-card {
+  transition: transform var(--speed-fast), border-color var(--speed-fast), background var(--speed-fast), box-shadow var(--speed-fast);
+}
+.glossary-card:hover,
+.glossary-card:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(214, 172, 95, .46);
+  background: linear-gradient(135deg, rgba(214,172,95,.11), rgba(255,255,255,.035));
+  box-shadow: 0 18px 42px rgba(0,0,0,.38), 0 0 0 1px rgba(214,172,95,.08);
+}
+.glossary-card:hover .glossary-icon img,
+.glossary-card:focus-within .glossary-icon img {
+  transform: scale(1.08) rotate(-2deg);
+}
+.glossary-icon img { transition: transform var(--speed-fast); }
+
+/* Модалка участников: иконка выровнена по визуальной середине группы заголовка. */
+.contributor-modal-head {
+  align-items: center;
+}
+.contributor-modal-head .contributor-avatar {
+  margin: 0;
+  align-self: center;
+}
+
+/* Помощники на странице «О нас» теперь ссылки. */
+.helper-card.about-helper-link {
+  display: block;
+  color: inherit;
+  cursor: pointer;
+  transition: transform var(--speed-fast), border-color var(--speed-fast), background var(--speed-fast), box-shadow var(--speed-fast);
+}
+.helper-card.about-helper-link:hover,
+.helper-card.about-helper-link:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(214, 172, 95, .5);
+  background: linear-gradient(135deg, rgba(214,172,95,.12), rgba(255,255,255,.04));
+  box-shadow: 0 18px 42px rgba(0,0,0,.36), 0 0 0 1px rgba(214,172,95,.1);
+}
+
+/* Страница сборки: активная кнопка экипировки сохраняет hover-свечение. */
+.gear-tier-btn.rarity-common.is-active { background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); }
+.gear-tier-btn.rarity-rare.is-active { background: linear-gradient(180deg, rgba(83,154,255,.24), rgba(83,154,255,.07)); }
+.gear-tier-btn.rarity-heroic.is-active { background: linear-gradient(180deg, rgba(166,104,255,.26), rgba(166,104,255,.08)); }
+.gear-tier-btn.rarity-epic.is-active { background: linear-gradient(180deg, rgba(255,178,75,.26), rgba(255,178,75,.08)); }
+.gear-tier-btn.rarity-legendary.is-active { background: linear-gradient(180deg, rgba(65,215,199,.28), rgba(65,215,199,.08)); }
+
+@media (max-width: 860px) {
+  .tier-table-row,
+  .tier-table-locked .tier-table-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+  .tier-table-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+  .hero-count-stat {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+  .hero-detail-poster .hero-gender-tags {
+    left: clamp(18px, 6vw, 40px);
+    right: clamp(18px, 6vw, 40px);
+    bottom: clamp(132px, 22vw, 154px);
+  }
+}

@@ -1,0 +1,49 @@
+/* === ЛОКАЛЬНЫЙ ШРИФТ BEBAS NEUE === */
+@font-face {
+  font-family: "Bebas Neue Local";
+  src: url("../../assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bebas Neue Local";
+  src: url("../../assets/fonts/BebasNeue-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === ТЕМА, ЦВЕТА И ОБЩИЕ ПЕРЕМЕННЫЕ === */
+:root {
+  color-scheme: dark;
+  --font-main: "Bebas Neue Local", "Arial Narrow", Arial, sans-serif;
+  --font-display: var(--font-main);
+  --font-card-menu: var(--font-main);
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-xl: 42px;
+  --speed-fast: 160ms;
+  --speed: 260ms;
+  --speed-slow: 520ms;
+  --bg: #0b0908;
+  --bg-soft: #15110e;
+  --bg-elevated: rgba(27, 21, 16, 0.88);
+  --bg-card: rgba(28, 23, 19, 0.76);
+  --text: #f5ead8;
+  --muted: #b9a98e;
+  --muted-2: #8e806e;
+  --line: rgba(255, 228, 184, 0.15);
+  --accent: #d99d45;
+  --accent-2: #ffcf77;
+  --accent-dark: #7b4421;
+  --danger: #d95a45;
+  --success: #82c77e;
+  --shadow: 0 26px 80px rgba(0, 0, 0, .45);
+  --shadow-soft: 0 14px 40px rgba(0, 0, 0, .28);
+  --glass: rgba(255, 255, 255, .07);
+  --hero-gradient: radial-gradient(circle at 72% 25%, rgba(217, 157, 69, .3), transparent 34%), linear-gradient(135deg, #0b0908 0%, #1b110c 58%, #4b2c18 100%);
+}

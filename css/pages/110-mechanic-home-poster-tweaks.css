@@ -1,0 +1,45 @@
+/* Чистка страницы механики и размещение кнопок постера главной. */
+
+/* Страница механики: убираем большой отступ intro-баннера, первыми идут контентные блоки. */
+.mechanic-detail-clean {
+  margin-top: 22px;
+}
+
+/* Постер главной: текст остаётся на месте, кнопки закреплены внизу слева. */
+.home-hero .hero-content {
+  padding-bottom: clamp(76px, 8vw, 110px);
+}
+
+.home-hero .lead {
+  margin-top: clamp(16px, 1.8vw, 24px);
+  margin-bottom: 0;
+}
+
+.home-hero > .hero-actions {
+  position: absolute;
+  z-index: 6;
+  left: clamp(32px, 7vw, 86px);
+  bottom: clamp(18px, 3.2vw, 34px);
+  width: max-content;
+  max-width: calc(100% - clamp(64px, 14vw, 172px));
+  justify-content: flex-start;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .home-hero {
+    padding-bottom: clamp(118px, 24vw, 156px);
+  }
+
+  .home-hero .hero-content {
+    padding-bottom: 0;
+  }
+
+  .home-hero > .hero-actions {
+    left: clamp(18px, 5vw, 32px);
+    right: clamp(18px, 5vw, 32px);
+    bottom: clamp(18px, 5vw, 30px);
+    width: auto;
+    max-width: none;
+  }
+}

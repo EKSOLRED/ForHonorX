@@ -1,0 +1,48 @@
+/* Хотфикс карточки приёма: кнопка восстановления всегда доступна, иконки под центрированным названием. */
+.tab-panel[data-tab-panel="moves"] .move-frame-card .move-frame-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 0;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.tab-panel[data-tab-panel="moves"] .move-frame-card .move-frame-head h3 {
+  grid-column: auto;
+  justify-self: auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.tab-panel[data-tab-panel="moves"] .move-frame-card .move-icon-grid {
+  grid-column: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  gap: 6px;
+}
+
+.tab-panel[data-tab-panel="moves"] .move-frame-card .move-icon-link,
+.tab-panel[data-tab-panel="moves"] .move-frame-card .move-icon-link img {
+  width: 34px;
+  height: 34px;
+}
+
+.move-recovery-soon {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  color: var(--muted);
+  text-align: center;
+  font-weight: 900;
+}

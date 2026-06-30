@@ -1,0 +1,16 @@
+/* Аватар участника DisHonor. */
+.helper-avatar.has-image {
+  background: rgba(0, 0, 0, .28);
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+  overflow: hidden;
+  padding: 0;
+}
+.helper-avatar.has-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.contributor-modal-head .helper-avatar.has-image {
+  margin-bottom: 0;
+}

@@ -1,0 +1,191 @@
+/* === ПРАВКИ: МОБИЛЬНОЕ МЕНЮ И ПРОКРУТКА МОДАЛКИ ПЕРКОВ === */
+/* ПК: стрелка у пунктов с подменю стоит ближе к тексту и плавно поворачивается при наведении. */
+@media (min-width: 1161px) {
+  .site-nav > .nav-group > .nav-group-head {
+    gap: 4px;
+  }
+
+  .site-nav > .nav-group > .nav-group-head::after {
+    margin-left: 0;
+    transform: translateY(-3px) rotate(45deg);
+    transition: transform var(--speed-fast), opacity var(--speed-fast);
+  }
+
+  .site-nav > .nav-group:hover > .nav-group-head::after,
+  .site-nav > .nav-group:focus-within > .nav-group-head::after {
+    transform: translateY(2px) rotate(225deg);
+    opacity: 1;
+  }
+}
+
+/* Мобильное меню: родительский пункт открывает список, а не ведёт на страницу. */
+@media (max-width: 1160px) {
+  .site-nav {
+    align-items: stretch;
+    padding-inline: clamp(26px, 7vw, 42px);
+  }
+
+  .site-nav .nav-link,
+  .site-nav .nav-link-main {
+    width: max-content;
+    max-width: 100%;
+    margin: 0;
+    min-height: 42px;
+    padding: 10px 0;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: clamp(1.16rem, 4.4vw, 1.55rem);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .055em;
+  }
+
+  .site-nav .nav-group {
+    display: grid;
+    justify-items: start;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav .nav-group-head {
+    display: grid;
+    grid-template-columns: max-content 18px;
+    align-items: center;
+    justify-content: start;
+    justify-items: start;
+    width: max-content;
+    max-width: 100%;
+    gap: 7px;
+    text-align: left;
+  }
+
+  .site-nav .nav-link-main {
+    cursor: pointer;
+  }
+
+  .site-nav .nav-group-toggle {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--accent-2);
+    pointer-events: none;
+  }
+
+  .site-nav .nav-toggle-chevron {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform var(--speed-fast), color var(--speed-fast);
+  }
+
+  .site-nav .nav-group.is-open .nav-toggle-chevron {
+    transform: translateY(2px) rotate(225deg);
+  }
+
+  .site-nav .nav-submenu,
+  .site-nav .nav-group.is-active .nav-submenu,
+  .site-nav .nav-group:hover .nav-submenu,
+  .site-nav .nav-group:focus-within .nav-submenu,
+  .site-nav .nav-group:not(.is-open) .nav-submenu,
+  .site-nav .nav-group:not(.is-open):hover .nav-submenu,
+  .site-nav .nav-group:not(.is-open):focus-within .nav-submenu {
+    position: static;
+    display: grid;
+    justify-items: start;
+    width: 100%;
+    min-width: 0;
+    max-height: 0;
+    margin: 0;
+    padding: 0 0 0 18px;
+    gap: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    overflow: hidden;
+    visibility: visible;
+    pointer-events: none;
+    transform: none;
+    transition: max-height var(--speed), padding-block var(--speed);
+  }
+
+  .site-nav .nav-group.is-open .nav-submenu,
+  .site-nav .nav-group.is-open:hover .nav-submenu,
+  .site-nav .nav-group.is-open:focus-within .nav-submenu {
+    max-height: 440px;
+    padding-top: 3px;
+    padding-bottom: 8px;
+    pointer-events: auto;
+  }
+
+  .site-nav .nav-sub-link {
+    width: max-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 7px 0;
+    border: 0;
+    border-radius: 0;
+    color: color-mix(in srgb, var(--muted) 76%, transparent);
+    background: transparent;
+    box-shadow: none;
+    font-size: clamp(.98rem, 3.55vw, 1.18rem);
+    font-weight: 700;
+    letter-spacing: .055em;
+    text-align: left;
+  }
+
+  .site-nav .nav-sub-link:hover,
+  .site-nav .nav-sub-link:focus-visible,
+  .site-nav .nav-sub-link.is-active {
+    color: var(--text);
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .site-nav .nav-sub-link::after,
+  .site-nav .nav-sub-link.is-active::after,
+  .site-nav .nav-sub-link:hover::after {
+    content: none;
+  }
+}
+
+/* На телефоне модалка таблицы перков прокручивается целиком по вертикали. */
+@media (max-width: 760px) {
+  .item-modal.is-perk-builder-modal.modal.is-open {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: max(78px, calc(env(safe-area-inset-top) + 68px)) 14px 34px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .item-modal.is-perk-builder-modal.modal.is-open .item-modal-card {
+    width: min(100%, 980px);
+    max-height: none;
+    min-height: 0;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  .item-modal.is-perk-builder-modal.modal.is-open .perk-builder-modal {
+    overflow: visible;
+  }
+
+  .item-modal.is-perk-builder-modal.modal.is-open .perk-builder-table-wrap {
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+}

@@ -1,0 +1,258 @@
+/* === РЕДИЗАЙН ВЕРХНЕГО МЕНЮ И НОВЫЕ БЛОКИ ГЛАВНОЙ === */
+/*
+  Фон затемнён прямо в background-слоях, чтобы изображение работало как атмосфера,
+  но не спорило с карточками, таблицами и модальными окнами.
+*/
+body {
+  background:
+    linear-gradient(180deg, rgba(5, 5, 5, .82), rgba(8, 6, 5, .9)),
+    radial-gradient(circle at 50% 0%, rgba(255, 207, 119, .13), transparent 32rem),
+    url("../../assets/home/main-theme.webp") center top / cover fixed no-repeat,
+    var(--bg);
+}
+
+/* Верхнее меню: текстовый логотип слева, разделы строго по центру, поиск справа. */
+.site-header {
+  grid-template-columns: minmax(170px, 1fr) auto minmax(220px, 1fr);
+  justify-content: stretch;
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.brand-text-logo {
+  justify-self: start;
+  min-width: 0;
+  padding: 8px 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.1vw, 2.15rem);
+  font-weight: 700;
+  line-height: .92;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+  text-shadow: 0 7px 24px rgba(0, 0, 0, .7);
+}
+
+.brand-text-logo::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-2), transparent);
+  opacity: .7;
+}
+
+.site-nav {
+  justify-self: center;
+  justify-content: center;
+}
+
+.global-search {
+  justify-self: end;
+  width: min(330px, 100%);
+}
+
+/* Старый квадратный логотип больше не используется, но правило оставлено безопасным для старых страниц. */
+.brand-mark {
+  display: none;
+}
+
+/* Общие карточки новых секций главной. */
+.home-roadmap-section,
+.home-new-hero-section,
+.home-patches-section {
+  margin-top: clamp(36px, 6vw, 76px);
+}
+
+.home-image-card,
+.home-new-hero-card,
+.home-patch-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line));
+  border-radius: clamp(24px, 3vw, 38px);
+  background:
+    radial-gradient(circle at 78% 15%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 34%),
+    color-mix(in srgb, var(--bg-card) 86%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.home-image-card {
+  margin: 0;
+}
+
+.home-image-card img {
+  width: 100%;
+  min-height: clamp(260px, 48vw, 540px);
+  object-fit: cover;
+}
+
+.home-image-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.46)),
+    radial-gradient(circle at 18% 18%, transparent, rgba(0,0,0,.28));
+}
+
+.home-image-card figcaption {
+  position: absolute;
+  left: clamp(18px, 3vw, 34px);
+  right: clamp(18px, 3vw, 34px);
+  bottom: clamp(18px, 3vw, 30px);
+  z-index: 1;
+  max-width: 640px;
+  margin: 0;
+  padding: 14px 18px;
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line));
+  border-radius: 18px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg) 66%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.home-new-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 280px);
+  gap: clamp(18px, 4vw, 42px);
+  align-items: center;
+  min-height: 260px;
+  padding: clamp(22px, 4vw, 44px);
+}
+
+.home-new-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .16;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 76% 46%, black, transparent 68%);
+}
+
+.home-new-hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+.home-new-hero-copy h3,
+.home-patch-card h3 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 4vw, 4rem);
+}
+
+.home-new-hero-copy p:last-child,
+.home-patch-card p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 650;
+  line-height: 1.65;
+}
+
+.home-new-hero-status {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 42%, var(--line));
+  border-radius: var(--radius-md);
+  color: var(--accent-2);
+  background: color-mix(in srgb, var(--bg) 48%, transparent);
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.home-patches-banner {
+  margin-bottom: clamp(18px, 3vw, 28px);
+}
+
+.home-patches-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.5vw, 26px);
+}
+
+.home-patch-card {
+  padding: clamp(20px, 3vw, 34px);
+}
+
+.home-patch-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-2), transparent);
+  opacity: .7;
+}
+
+
+@media (max-width: 1160px) {
+  .site-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .brand {
+    order: 1;
+  }
+
+  .global-search {
+    order: 2;
+    justify-self: stretch;
+    width: auto;
+  }
+
+  .burger {
+    order: 3;
+    justify-self: end;
+  }
+
+  .site-nav {
+    order: 4;
+    justify-self: stretch;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 1080px) {
+  .brand-text-logo {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-new-hero-card,
+  .home-patches-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-text-logo {
+    font-size: 1.18rem;
+    letter-spacing: .055em;
+  }
+
+  .home-image-card img {
+    min-height: 240px;
+  }
+
+  .home-image-card figcaption {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    border-width: 1px 0 0;
+    border-radius: 0;
+  }
+}

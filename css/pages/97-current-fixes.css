@@ -1,0 +1,293 @@
+/* v37: текущие правки без искр, чище предпросмотр/подсказки тиров, группировка страниц и полировка названий. */
+
+/* Звезда источника проф. тир-листа: та же семья подсказок, что у рекомендаций, без бейджа. */
+.tierlist-title-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.tierlist-source.tierlist-source-star,
+.verified-source.tierlist-source.tierlist-source-star {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent-2);
+  padding: 0;
+}
+.tierlist-source.tierlist-source-star svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  filter: drop-shadow(0 0 12px rgba(214, 172, 95, .34));
+}
+.tierlist-source.tierlist-source-star .verified-tooltip {
+  top: auto;
+  left: 50%;
+  right: auto;
+  bottom: calc(100% + 12px);
+  width: min(310px, 76vw);
+  transform: translate(-50%, 8px) scale(.98);
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(214, 172, 95, .42);
+  border-radius: 14px;
+  background: #18120e;
+  color: var(--text);
+  box-shadow: 0 18px 54px rgba(0,0,0,.78), 0 0 0 1px rgba(214,172,95,.18);
+  text-align: left;
+  font-size: .78rem;
+  line-height: 1.35;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.tierlist-source.tierlist-source-star:hover .verified-tooltip,
+.tierlist-source.tierlist-source-star:focus-visible .verified-tooltip,
+.tierlist-source.tierlist-source-star:focus-within .verified-tooltip {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+.tierlist-source.tierlist-source-star .verified-tooltip strong {
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .72rem;
+}
+.tierlist-source.tierlist-source-star .verified-tooltip span {
+  color: var(--text);
+  font-weight: 850;
+}
+
+/* Предпросмотр изображения тира: полное изображение помещается в модалку без внутренних скроллбаров. */
+.tier-preview-modal .tier-modal-card {
+  width: min(1240px, calc(100vw - 28px));
+  height: calc(100dvh - 28px);
+  max-height: calc(100dvh - 28px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.tier-preview-modal .item-modal-header {
+  flex: 0 0 auto;
+}
+.tier-preview-modal .modal-close {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  font-size: 1.35rem;
+  border-radius: 14px;
+}
+.tier-image-preview {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 8px 0 12px;
+}
+.tier-image-preview img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+.tier-preview-actions {
+  flex: 0 0 auto;
+}
+
+/* Кнопки редактируемого тир-листа: достаточно места для одной строки. */
+.tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 280px;
+}
+.tier-table-locked .tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 0;
+}
+.tier-row-tools {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 10px;
+}
+.tier-row-tools .tier-icon-btn {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+}
+.tier-settings-color-line {
+  display: grid;
+  grid-template-columns: auto 42px minmax(150px, 1fr) minmax(150px, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+.tier-settings-color-line .btn {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  white-space: normal;
+}
+
+/* Счётчик страницы героев: вне фильтров, обычный текст. */
+.hero-filter-shell {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.hero-filter-shell .hero-filter-bar {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+}
+.hero-count-stat {
+  margin-left: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  font-weight: 900;
+}
+.hero-count-stat strong {
+  color: var(--accent-2);
+}
+
+/* Участники центрированы. */
+.contributors-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+  justify-content: center;
+}
+
+/* Разделы механик. */
+.mechanics-grid {
+  display: grid;
+  gap: 24px;
+}
+.mechanics-section,
+.terms-section {
+  display: grid;
+  gap: 14px;
+}
+.mechanics-section h2,
+.terms-section h2 {
+  margin: 0;
+  color: var(--accent-2);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.mechanics-section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.section-empty-mini {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed rgba(214, 172, 95, .24);
+  border-radius: 18px;
+  color: var(--muted);
+  background: rgba(255,255,255,.025);
+}
+
+/* Разделы терминологии и новые компактные карточки. */
+.terms-grid {
+  display: grid;
+  gap: 24px;
+}
+.terms-section-list {
+  display: grid;
+  gap: 10px;
+}
+.term-line-card {
+  display: grid;
+  grid-template-columns: minmax(150px, max-content) auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 10px;
+  text-align: left;
+  padding: 16px 18px;
+}
+.term-line-card::after,
+.term-line-card .term-card-meta {
+  display: none;
+}
+.term-line-card strong {
+  text-align: left;
+  margin: 0;
+  font-size: .98rem;
+  color: var(--accent-2);
+}
+.term-line-card p {
+  margin: 0;
+  color: var(--muted);
+}
+.term-dash {
+  color: rgba(214, 172, 95, .72);
+  font-weight: 900;
+}
+
+/* Соцсети на странице «О нас»: белые inline-иконки без бейджа. */
+.socials .social-icon {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+.socials .social-icon::after {
+  content: none;
+  display: none;
+}
+.socials .social-svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+  fill: #fff;
+  opacity: .9;
+  transition: opacity var(--speed-fast), transform var(--speed-fast), filter var(--speed-fast);
+}
+.socials .social-icon:hover .social-svg,
+.socials .social-icon:focus-visible .social-svg {
+  opacity: 1;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 14px rgba(255,255,255,.18));
+}
+
+@media (max-width: 860px) {
+  .hero-filter-shell {
+    display: grid;
+  }
+  .tier-table-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+  .tier-row-tools {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+  .tier-settings-color-line {
+    grid-template-columns: 1fr;
+  }
+  .term-line-card {
+    grid-template-columns: 1fr;
+  }
+  .term-dash { display: none; }
+}

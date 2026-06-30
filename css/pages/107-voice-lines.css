@@ -1,0 +1,205 @@
+.voice-section {
+  display: grid;
+  gap: 18px;
+}
+
+.voice-subtabs {
+  position: static;
+  top: auto;
+  z-index: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 0 4px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.voice-subtab {
+  min-height: 40px;
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  transition: color var(--speed), background var(--speed), border-color var(--speed), transform var(--speed), box-shadow var(--speed);
+}
+
+.voice-subtab:hover {
+  color: var(--text);
+  background: rgba(219, 182, 115, 0.08);
+  border-color: rgba(219, 182, 115, 0.28);
+  transform: translateY(-1px);
+}
+
+.voice-subtab.is-active,
+.voice-subtab.is-active:hover {
+  color: #21140a;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  border-color: transparent;
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.voice-subpanel {
+  display: none;
+}
+
+.voice-subpanel.is-active {
+  display: grid;
+  gap: 14px;
+}
+
+.voice-set-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(219, 182, 115, 0.22);
+}
+
+.voice-set-header h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+}
+
+.voice-set-header span {
+  color: var(--gold);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+}
+
+.voice-lines {
+  display: grid;
+  gap: 10px;
+}
+
+.voice-line-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 46px;
+  gap: 14px;
+  align-items: stretch;
+  padding: 14px 16px;
+  border: 1px solid rgba(219, 182, 115, 0.22);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(0, 0, 0, 0.18)),
+    rgba(22, 19, 16, 0.88);
+}
+
+.voice-line-main {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.58fr) minmax(260px, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.voice-original-block,
+.voice-meaning-block {
+  min-width: 0;
+}
+
+.voice-original {
+  display: grid;
+  gap: 4px;
+}
+
+.voice-original strong {
+  font-size: 1.08rem;
+  color: #f3eadc;
+  line-height: 1.25;
+}
+
+.voice-original span {
+  color: var(--gold);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.voice-translation-text,
+.voice-context-text {
+  margin: 0;
+  color: rgba(243, 234, 220, 0.84);
+  line-height: 1.5;
+}
+
+.voice-context-text {
+  margin-top: 5px;
+  color: rgba(243, 234, 220, 0.58);
+  font-size: 0.9rem;
+}
+
+.voice-play-btn {
+  width: 46px;
+  height: 46px;
+  align-self: center;
+  justify-self: end;
+  border-radius: 50%;
+  border: 1px solid rgba(219, 182, 115, 0.55);
+  background: rgba(219, 182, 115, 0.12);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-weight: 900;
+  line-height: 1;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.voice-play-btn span {
+  display: block;
+  transform: translateX(1px);
+  color: currentColor;
+}
+
+.voice-play-btn:hover,
+.voice-play-btn.is-playing {
+  transform: translateY(-1px) scale(1.04);
+  background: rgba(219, 182, 115, 0.22);
+  color: #fff4df;
+  border-color: rgba(255, 207, 119, 0.9);
+  box-shadow: 0 0 0 4px rgba(219, 182, 115, 0.08), 0 10px 24px rgba(0, 0, 0, 0.24);
+}
+
+.voice-play-btn.is-playing span {
+  transform: none;
+  font-size: 0.82rem;
+  letter-spacing: -0.1em;
+}
+
+.voice-play-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .voice-subtabs {
+    width: 100%;
+    border-radius: 22px;
+  }
+
+  .voice-set-header,
+  .voice-line-card,
+  .voice-line-main {
+    grid-template-columns: 1fr;
+  }
+
+  .voice-set-header {
+    align-items: start;
+  }
+
+  .voice-play-btn {
+    justify-self: start;
+  }
+}

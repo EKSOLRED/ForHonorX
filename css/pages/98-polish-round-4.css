@@ -1,0 +1,425 @@
+/* v38: четвёртый раунд полировки макета без изменения архитектуры страниц. */
+
+/* Фильтры героев: рамка заканчивается на кнопке сброса, счётчик остаётся снаружи. */
+.hero-filter-shell {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.hero-filter-shell .hero-filter-bar {
+  flex: 0 0 auto;
+  width: max-content;
+  max-width: calc(100% - 170px);
+  margin: 0;
+  justify-content: flex-start;
+}
+.hero-filter-shell .hero-filter-bar .filter-group,
+.hero-filter-shell .hero-filter-bar .filter-group-right {
+  flex: 0 0 auto;
+  width: auto;
+  margin-left: 0;
+}
+.hero-count-stat {
+  flex: 0 0 auto;
+  margin-left: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  font-weight: 900;
+  white-space: nowrap;
+}
+.hero-count-stat strong {
+  color: var(--accent-2);
+  margin-left: 6px;
+}
+
+/* Источник профессионального тир-листа: звезда без бейджа, подсказка в стиле рекомендаций. */
+.tierlist-title-line {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.tierlist-source.tierlist-source-star,
+.verified-source.tierlist-source.tierlist-source-star {
+  position: relative;
+  z-index: 30;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  flex: 0 0 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent-2);
+  overflow: visible;
+}
+.tierlist-source.tierlist-source-star svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  filter: drop-shadow(0 0 10px rgba(214, 172, 95, .34));
+}
+.tierlist-source.tierlist-source-star .verified-tooltip {
+  position: absolute;
+  left: 50%;
+  right: auto;
+  bottom: calc(100% + 10px);
+  top: auto;
+  width: min(310px, 76vw);
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(214, 172, 95, .3);
+  border-radius: 16px;
+  background: rgb(18, 13, 11);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  text-align: left;
+  font-size: .82rem;
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 6px) scale(.98);
+  transition: opacity var(--speed-fast), transform var(--speed-fast), visibility var(--speed-fast);
+  overflow: visible;
+  white-space: normal;
+}
+.tierlist-source.tierlist-source-star:hover .verified-tooltip,
+.tierlist-source.tierlist-source-star:focus-visible .verified-tooltip,
+.tierlist-source.tierlist-source-star:focus-within .verified-tooltip,
+.tierlist-source.tierlist-source-star .verified-tooltip:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+.tierlist-source.tierlist-source-star .verified-tooltip strong {
+  color: var(--text);
+  font-weight: 950;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .92rem;
+}
+.tierlist-source.tierlist-source-star .verified-tooltip span {
+  color: var(--text);
+  font-weight: 800;
+}
+.tierlist-source.tierlist-source-star .verified-tooltip a {
+  color: var(--accent-2);
+  font-weight: 950;
+  text-decoration: none;
+}
+.tierlist-source.tierlist-source-star .verified-tooltip a:hover,
+.tierlist-source.tierlist-source-star .verified-tooltip a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Предпросмотр тира: сгенерированное изображение всегда полностью помещается в диалог. */
+.tier-preview-modal {
+  align-items: center;
+  justify-content: center;
+}
+.tier-preview-modal .tier-modal-card {
+  width: min(1240px, calc(100vw - 28px));
+  height: min(900px, calc(100dvh - 28px));
+  max-height: calc(100dvh - 28px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+.tier-preview-modal .item-modal-header {
+  min-height: 0;
+  margin-bottom: 10px;
+  padding-right: 56px;
+}
+.tier-preview-modal .item-modal-header h2 {
+  margin-bottom: 0;
+}
+.tier-preview-modal .modal-close,
+.tier-preview-modal .tier-modal-card > .modal-close {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  max-width: 42px;
+  max-height: 42px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  font-size: 0;
+  border-radius: 14px;
+}
+.tier-preview-modal .modal-close::before {
+  content: "×";
+  display: block;
+  font-size: 1.45rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+.tier-image-preview {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  margin: 0 0 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.tier-image-preview img {
+  display: block;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+.tier-preview-actions {
+  flex: 0 0 auto;
+}
+
+/* Действия строки редактируемого тир-листа: все иконки в одну строку. */
+.tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 330px;
+}
+.tier-table-locked .tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 0;
+}
+.tier-row-tools {
+  flex-wrap: nowrap;
+  gap: 8px;
+  justify-content: flex-end;
+  min-width: 0;
+  padding: 8px 12px;
+}
+.tier-row-tools .tier-icon-btn {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+}
+
+/* Участники: сохраняем исходные карточки списка, центрируем только весь столбец. */
+.contributors-grid {
+  grid-template-columns: minmax(0, 980px);
+  justify-content: center;
+  width: 100%;
+  margin-inline: auto;
+}
+.contributor-card,
+.contributor-card:not(.contributor-flip) {
+  width: 100%;
+  max-width: 980px;
+  grid-template-columns: 68px minmax(0, 1fr);
+}
+
+/* Механики: разделы есть, но карточки остаются строками списка. */
+.mechanics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+.mechanics-section {
+  display: grid;
+  gap: 12px;
+}
+.mechanics-section-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.mechanics-section-grid .mechanic-card,
+.mechanic-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+  align-items: center;
+  min-height: 74px;
+  padding: 18px 20px;
+  gap: 18px;
+  overflow: hidden;
+}
+.mechanic-card .term-card-meta,
+.mechanic-card .number,
+.mechanic-card .mechanic-number {
+  display: none;
+}
+.mechanic-card strong {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+.mechanic-card p {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Терминология: нейтральные названия, компактное тире, описание начинается ближе к имени. */
+.terms-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+.term-line-card {
+  display: grid;
+  grid-template-columns: max-content 18px minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 8px;
+  padding: 16px 18px;
+}
+.term-line-card strong {
+  color: var(--text);
+  justify-self: start;
+  text-align: left;
+  white-space: nowrap;
+}
+.term-line-card p {
+  justify-self: start;
+  text-align: left;
+}
+.term-dash {
+  justify-self: center;
+  color: var(--muted-2);
+}
+
+/* Плавающий навигатор разделов для терминологии и механик. */
+.section-jump {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 85;
+}
+.section-jump-toggle {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(214, 172, 95, .34);
+  border-radius: 15px;
+  color: var(--accent-2);
+  background: rgba(18, 13, 11, .96);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  font-weight: 1000;
+  transition: transform var(--speed-fast), border-color var(--speed-fast), background var(--speed-fast);
+}
+.section-jump-toggle:hover,
+.section-jump-toggle:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(214, 172, 95, .62);
+  background: rgba(36, 26, 18, .98);
+}
+.section-jump-menu {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  width: min(310px, calc(100vw - 44px));
+  max-height: min(420px, 70vh);
+  overflow: auto;
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid rgba(214, 172, 95, .28);
+  border-radius: 18px;
+  background: rgb(18, 13, 11);
+  box-shadow: var(--shadow);
+}
+.section-jump-menu[hidden] {
+  display: none;
+}
+.section-jump-menu button {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 12px;
+  color: var(--text);
+  background: transparent;
+  text-align: left;
+  font-weight: 850;
+  cursor: pointer;
+}
+.section-jump-menu button:hover,
+.section-jump-menu button:focus-visible {
+  background: rgba(214, 172, 95, .12);
+  color: var(--accent-2);
+}
+
+/* Иконки соцсетей на странице «О нас» крупнее, всё ещё без бейджа. */
+.socials .social-svg {
+  width: 76px;
+  height: 76px;
+}
+
+/* Метки пола на постере героя: между кнопками и низом, фон чуть светлее. */
+.hero-detail-poster .hero-gender-tags {
+  left: clamp(28px, 6vw, 70px);
+  bottom: clamp(74px, 9.5vw, 112px);
+  background: transparent;
+}
+.hero-detail-poster .hero-gender-tags span {
+  background: rgba(255, 228, 184, .16);
+  border-color: rgba(255, 207, 119, .42);
+}
+
+/* Вердикт сравнения: текстовые различия характеристик как зелёное значение — красное значение. */
+.compare-text-diff {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.compare-text-diff .compare-left-value {
+  color: #9df0b6;
+}
+.compare-text-diff .compare-right-value {
+  color: #ff9c8f;
+}
+
+@media (max-width: 1020px) {
+  .hero-filter-shell {
+    display: grid;
+  }
+  .hero-filter-shell .hero-filter-bar {
+    max-width: 100%;
+  }
+  .tier-table-row {
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .tier-row-tools {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .mechanic-card,
+  .mechanics-section-grid .mechanic-card,
+  .term-line-card {
+    grid-template-columns: 1fr;
+  }
+  .term-dash {
+    display: none;
+  }
+  .section-jump {
+    left: 14px;
+    bottom: 14px;
+  }
+}

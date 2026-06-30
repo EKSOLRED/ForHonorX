@@ -1,0 +1,201 @@
+/* v35: полировка тир-листа, предпросмотры, кроп портретов, компактные настройки и кастомные подсказки. */
+
+.tier-hero-token {
+  width: 104px;
+  height: 104px;
+  border-radius: 20px;
+}
+
+.tier-hero-token img {
+  object-position: 50% 10%;
+  transform: scale(1.76);
+  transform-origin: 50% 16%;
+}
+
+.tier-dropzone,
+.tier-hero-pool {
+  gap: 10px;
+}
+
+.tierlist-card-head p:not(.eyebrow) {
+  display: none;
+}
+
+.tier-preview-modal .tier-modal-card {
+  width: min(1180px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tier-preview-modal .item-modal-header,
+.tier-preview-modal .tier-preview-actions {
+  flex: 0 0 auto;
+}
+
+.tier-image-preview {
+  display: grid;
+  place-items: center;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  max-height: none;
+}
+
+.tier-image-preview img {
+  display: block;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  max-height: min(68vh, 760px);
+  height: auto;
+  object-fit: contain;
+}
+
+.fx-tooltip-source {
+  position: relative;
+}
+
+.fx-tooltip {
+  position: absolute;
+  z-index: 12000;
+  display: block;
+  width: max-content;
+  max-width: 260px;
+  padding: 10px 12px;
+  border: 1px solid rgba(214, 172, 95, .42);
+  border-radius: 14px;
+  background: #18120e;
+  color: var(--text);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, .78), 0 0 0 1px rgba(214, 172, 95, .18);
+  font-size: .76rem;
+  font-weight: 850;
+  line-height: 1.35;
+  letter-spacing: .02em;
+  text-align: center;
+  text-transform: none;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--speed-fast), visibility var(--speed-fast), transform var(--speed-fast);
+}
+
+.fx-tooltip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: #18120e;
+}
+
+.fx-tooltip-source:hover > .fx-tooltip,
+.fx-tooltip-source:focus-visible > .fx-tooltip,
+.fx-tooltip-source:focus-within > .fx-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tier-row-tools .tier-icon-btn .fx-tooltip {
+  top: 50%;
+  right: calc(100% + 10px);
+  transform: translate(8px, -50%);
+}
+
+.tier-row-tools .tier-icon-btn:hover .fx-tooltip,
+.tier-row-tools .tier-icon-btn:focus-visible .fx-tooltip {
+  transform: translate(0, -50%);
+}
+
+.hero-tier-rank .fx-tooltip {
+  top: 50%;
+  right: calc(100% + 12px);
+  transform: translate(8px, -50%);
+}
+
+.hero-tier-rank:hover .fx-tooltip,
+.hero-tier-rank:focus-visible .fx-tooltip {
+  transform: translate(0, -50%);
+}
+
+.tier-settings-form {
+  gap: 18px;
+}
+
+.tier-settings-label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 850;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.tier-settings-color-line {
+  display: grid;
+  grid-template-columns: auto 44px repeat(2, minmax(0, max-content));
+  align-items: center;
+  gap: 10px;
+}
+
+.tier-settings-color-line > span {
+  color: var(--muted);
+  font-weight: 850;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+
+.tier-settings-form .tier-color-square,
+.tier-settings-form input.tier-color-square[type="color"] {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 207, 119, .3);
+  border-radius: 13px;
+  background: #15110e;
+  cursor: pointer;
+}
+
+.tier-settings-color-line .btn {
+  min-height: 40px;
+  padding-inline: clamp(10px, 2vw, 14px);
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .tier-hero-token {
+    width: 82px;
+    height: 82px;
+  }
+}
+
+@media (max-width: 560px) {
+  .tier-settings-color-line {
+    grid-template-columns: auto 44px;
+  }
+
+  .tier-settings-color-line .btn {
+    grid-column: 1 / -1;
+    justify-content: center;
+    width: 100%;
+    white-space: normal;
+  }
+
+  .hero-tier-rank .fx-tooltip {
+    top: auto;
+    right: 50%;
+    bottom: calc(100% + 10px);
+    transform: translate(50%, 6px);
+  }
+
+  .hero-tier-rank:hover .fx-tooltip,
+  .hero-tier-rank:focus-visible .fx-tooltip {
+    transform: translate(50%, 0);
+  }
+}

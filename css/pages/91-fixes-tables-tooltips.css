@@ -1,0 +1,824 @@
+/* v13: правки интерфейса */
+.filter-bar-reset {
+  margin-left: auto;
+  align-self: center;
+  min-height: 46px;
+}
+.hero-filter-bar,
+.map-filter-bar {
+  width: min(100%, 1040px);
+  margin-inline: auto;
+  align-items: center;
+}
+.heroes-toolbar .search-box,
+.maps-toolbar .search-box,
+.heroes-toolbar .search-box.stretch,
+.maps-toolbar .search-box.stretch {
+  width: min(100%, 1040px);
+  max-width: 1040px;
+  margin-inline: auto;
+}
+.hero-filter-bar .filter-group,
+.map-filter-bar .filter-group {
+  flex: 0 1 auto;
+}
+.hero-filter-bar .filter-group-right,
+.map-filter-bar .filter-group-right {
+  position: relative;
+  border-left: 0;
+  padding-left: 24px;
+}
+.hero-filter-bar .filter-group-right::before,
+.map-filter-bar .filter-group-right::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 42px;
+  background: color-mix(in srgb, var(--accent) 34%, var(--line));
+}
+.filter-icons-only,
+.terminology-filter-chips {
+  justify-content: flex-start;
+}
+.catalog-filter-stack .filter-group,
+#featKindFilters.filter-bar-plain .filter-group,
+#perkFilters .filter-group {
+  background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+}
+.ability-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+.ability-info-button {
+  cursor: default;
+  pointer-events: none;
+}
+.ability-hint-text {
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 800;
+}
+.ability-like-card:hover .ability-info-button,
+.ability-like-card:focus-within .ability-info-button {
+  transform: translateX(5px);
+}
+.compare-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+}
+.compare-swap-slot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 28px;
+}
+.compare-grid { align-items: stretch; }
+.compare-card { height: 100%; }
+.catalog-ability-list .ability-tier,
+.tab-panel[data-tab-panel="feats"] .ability-tier,
+.tab-panel[data-tab-panel="perks"] .ability-tier {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+.catalog-ability-list .ability-tier-label,
+.tab-panel[data-tab-panel="feats"] .ability-tier-label,
+.tab-panel[data-tab-panel="perks"] .ability-tier-label,
+.catalog-ability-list .ability-tier-label:hover,
+.tab-panel[data-tab-panel="feats"] .ability-tier-label:hover,
+.tab-panel[data-tab-panel="perks"] .ability-tier-label:hover,
+.catalog-ability-list .ability-tier:hover .ability-tier-label,
+.tab-panel[data-tab-panel="feats"] .ability-tier:hover .ability-tier-label,
+.tab-panel[data-tab-panel="perks"] .ability-tier:hover .ability-tier-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  min-width: 70px;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 8px;
+  text-align: center;
+  pointer-events: none;
+  box-shadow: none;
+}
+#termCategoryFilters {
+  width: min(100%, 1040px);
+  margin-inline: auto;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+}
+#termCategoryFilters .filter-chip {
+  min-height: 42px;
+  padding-inline: 16px;
+}
+
+/* v14: выравнивание, карточки и стабильные таблицы */
+.hero-filter-bar,
+.map-filter-bar {
+  margin-inline: 0 auto;
+  justify-content: flex-start;
+  gap: 0;
+}
+.heroes-toolbar .search-box,
+.maps-toolbar .search-box,
+.heroes-toolbar .search-box.stretch,
+.maps-toolbar .search-box.stretch,
+#termCategoryFilters {
+  margin-inline: 0 auto;
+}
+.hero-filter-bar .filter-group:first-child,
+.map-filter-bar .filter-group:first-child {
+  margin-right: 34px;
+}
+.hero-filter-bar .filter-group-right,
+.map-filter-bar .filter-group-right {
+  margin-left: 0;
+  padding-left: 0;
+}
+.hero-filter-bar .filter-group-right::before,
+.map-filter-bar .filter-group-right::before {
+  left: -17px;
+}
+.filter-bar-reset {
+  margin-left: auto;
+}
+.terminology-filter-row,
+#termCategoryFilters,
+#termCategoryFilters .terminology-filter-chips,
+#termCategoryFilters .filter-chips {
+  justify-content: flex-start;
+  text-align: left;
+}
+#termCategoryFilters .filter-chip,
+#termCategoryFilters .filter-chip span {
+  font-weight: 650;
+}
+.heroes-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.hero-card-compact {
+  min-height: 318px;
+  aspect-ratio: 4 / 5;
+}
+.hero-card-nameplate {
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border-radius: 16px;
+  padding: 12px;
+}
+.hero-card-nameplate h3 {
+  font-size: clamp(1.05rem, .75rem + .75vw, 1.45rem);
+}
+.execution-table {
+  table-layout: fixed;
+  width: 100%;
+}
+.execution-table th,
+.execution-table td {
+  width: auto;
+  overflow-wrap: anywhere;
+}
+.execution-table tbody {
+  min-height: 44px;
+}
+
+
+/* v15: запрошенные исправления */
+.heroes-toolbar,
+.maps-toolbar,
+.terminology-toolbar {
+  justify-content: flex-start;
+}
+.heroes-toolbar .search-box,
+.maps-toolbar .search-box,
+.heroes-toolbar .search-box.stretch,
+.maps-toolbar .search-box.stretch {
+  flex: 0 0 min(100%, 760px);
+  width: min(100%, 760px);
+  max-width: 760px;
+  margin-left: 0;
+  margin-right: auto;
+}
+.hero-filter-bar,
+.map-filter-bar {
+  width: max-content;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  justify-content: flex-start;
+  gap: 0;
+}
+.hero-filter-bar .filter-group:first-child,
+.map-filter-bar .filter-group:first-child {
+  margin-right: 0;
+  padding-right: 22px;
+  border-right: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line));
+}
+.hero-filter-bar .filter-group-right,
+.map-filter-bar .filter-group-right {
+  padding-left: 22px;
+  margin-left: 0;
+  border-left: 0;
+}
+.hero-filter-bar .filter-group-right::before,
+.map-filter-bar .filter-group-right::before {
+  content: none;
+}
+.filter-bar-reset {
+  margin-left: 24px;
+}
+#termCategoryFilters,
+.terminology-filter-row {
+  width: max-content;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  justify-content: flex-start;
+  text-align: left;
+}
+#termCategoryFilters .filter-chips,
+#termCategoryFilters .terminology-filter-chips {
+  justify-content: flex-start;
+}
+#termCategoryFilters .filter-chip,
+#termCategoryFilters .filter-chip span,
+#termCategoryFilters .chip,
+#termCategoryFilters .chip span {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.heroes-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.hero-card-compact {
+  min-height: 286px;
+  aspect-ratio: 4 / 5;
+}
+.hero-type-tag-top {
+  top: 12px;
+  right: 12px;
+}
+.hero-card-nameplate {
+  padding: 10px;
+}
+.hero-card-nameplate h3 {
+  font-size: clamp(1rem, .7rem + .55vw, 1.28rem);
+}
+.execution-table {
+  table-layout: fixed;
+  width: 100%;
+}
+.execution-table th,
+.execution-table td {
+  width: auto;
+  min-width: 0;
+}
+.execution-table tbody tr[hidden] {
+  display: none;
+}
+
+
+/* v17: точечные правки */
+.gear-tier-btn.rarity-legendary {
+  border-color: rgba(65, 215, 199, .62);
+  color: #9ff5eb;
+  background: linear-gradient(180deg, rgba(65, 215, 199, .18), rgba(65, 215, 199, .045));
+}
+.gear-tier-btn:hover,
+.gear-tier-btn:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 12px 24px rgba(0,0,0,.24), inset 0 0 0 1px color-mix(in srgb, currentColor 28%, transparent);
+}
+.gear-tier-btn.rarity-common:hover,
+.gear-tier-btn.rarity-common:focus-visible { background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); }
+.gear-tier-btn.rarity-rare:hover,
+.gear-tier-btn.rarity-rare:focus-visible { background: linear-gradient(180deg, rgba(83,154,255,.24), rgba(83,154,255,.07)); }
+.gear-tier-btn.rarity-heroic:hover,
+.gear-tier-btn.rarity-heroic:focus-visible { background: linear-gradient(180deg, rgba(166,104,255,.26), rgba(166,104,255,.08)); }
+.gear-tier-btn.rarity-epic:hover,
+.gear-tier-btn.rarity-epic:focus-visible { background: linear-gradient(180deg, rgba(255,178,75,.26), rgba(255,178,75,.08)); }
+.gear-tier-btn.rarity-legendary:hover,
+.gear-tier-btn.rarity-legendary:focus-visible { background: linear-gradient(180deg, rgba(65,215,199,.28), rgba(65,215,199,.08)); }
+.ability-tier-cards,
+.perk-card-grid,
+.catalog-grid.catalog-ability-list .ability-tier-cards {
+  align-items: stretch;
+}
+.feat-card.ability-like-card,
+.perk-card.ability-like-card {
+  height: 100%;
+}
+.feat-card.ability-like-card .ability-card-content,
+.perk-card.ability-like-card .ability-card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ability-card-footer {
+  margin-top: auto;
+  min-height: 52px;
+}
+.ability-card-stats {
+  margin-bottom: 16px;
+}
+#termCategoryFilters .filter-chip,
+#termCategoryFilters .filter-chip span {
+  color: var(--muted);
+  font-weight: 500;
+}
+#termCategoryFilters .filter-chip.is-active,
+#termCategoryFilters .filter-chip.is-active span,
+#termCategoryFilters .filter-chip:hover,
+#termCategoryFilters .filter-chip:hover span {
+  color: var(--accent-2);
+}
+.punishment-table {
+  table-layout: fixed;
+}
+.punishment-table th,
+.punishment-table td {
+  vertical-align: top;
+}
+.punishment-table .th-filter-btn {
+  width: 100%;
+}
+.table-empty-row td {
+  text-align: center;
+  color: var(--muted);
+}
+
+
+/* v18: подсказки, таблицы и вкладки героя */
+.hero-filter-bar,
+.map-filter-bar,
+#termCategoryFilters,
+.terminology-filter-row,
+.heroes-toolbar .search-box,
+.maps-toolbar .search-box,
+.heroes-toolbar .search-box.stretch,
+.maps-toolbar .search-box.stretch {
+  margin-left: 0;
+  margin-right: auto;
+}
+.verified-source {
+  overflow: visible;
+}
+.verified-source::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  bottom: 100%;
+  width: min(280px, 76vw);
+  height: 14px;
+}
+.verified-tooltip {
+  bottom: calc(100% + 4px);
+}
+.verified-tooltip:hover,
+.verified-source:hover .verified-tooltip,
+.verified-source:focus-visible .verified-tooltip,
+.verified-source:focus-within .verified-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.ability-card-topline {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 22px;
+  margin-bottom: 2px;
+}
+.tab-panel[data-tab-panel="feats"] .verified-source {
+  width: 18px;
+  height: 18px;
+  flex-basis: 18px;
+}
+.tab-panel[data-tab-panel="feats"] .verified-source svg {
+  width: 15px;
+  height: 15px;
+}
+.ability-card-content {
+  flex: 1 1 auto;
+}
+.ability-card-footer {
+  margin-top: auto;
+  align-items: center;
+}
+.punishment-table {
+  table-layout: fixed;
+  width: 100%;
+}
+.punishment-table th,
+.punishment-table td {
+  vertical-align: middle;
+  text-align: center;
+}
+.punishment-table thead th {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.punishment-table .th-sort,
+.punishment-table .th-filter-btn {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.punishment-table .th-filter {
+  vertical-align: middle;
+}
+.heal-filter-menu {
+  min-width: max-content;
+  width: max-content;
+  max-width: min(340px, 80vw);
+  background: #120d0b;
+  backdrop-filter: none;
+}
+.heal-filter-option,
+.heal-filter-reset {
+  white-space: nowrap;
+}
+.execution-table .heal-filter-menu,
+.punishment-table .heal-filter-menu {
+  background: #120d0b;
+}
+
+
+/* v19: правки страницы героя */
+.tab-panel[data-tab-panel="feats"],
+.tab-panel[data-tab-panel="perks"] {
+  overflow: visible;
+}
+.tab-panel[data-tab-panel="feats"] .ability-tier-cards,
+.tab-panel[data-tab-panel="perks"] .ability-tier-cards,
+.tab-panel[data-tab-panel="perks"] .perk-card-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 280px));
+  justify-content: start;
+  align-items: stretch;
+  overflow: visible;
+}
+.tab-panel[data-tab-panel="feats"] .feat-card.ability-like-card,
+.tab-panel[data-tab-panel="perks"] .perk-card.ability-like-card {
+  width: 100%;
+  max-width: 280px;
+  overflow: visible;
+}
+.tab-panel[data-tab-panel="feats"] .feat-card.ability-like-card::after,
+.tab-panel[data-tab-panel="perks"] .perk-card.ability-like-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ability-card-recommend {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 35;
+  display: inline-grid;
+  place-items: center;
+}
+.ability-card-recommend .verified-source,
+.tab-panel[data-tab-panel="feats"] .ability-card-recommend .verified-source,
+.tab-panel[data-tab-panel="perks"] .ability-card-recommend .verified-source {
+  width: 28px;
+  height: 28px;
+  flex-basis: 28px;
+  color: var(--accent-2);
+}
+.ability-card-recommend .verified-source svg,
+.tab-panel[data-tab-panel="feats"] .ability-card-recommend .verified-source svg,
+.tab-panel[data-tab-panel="perks"] .ability-card-recommend .verified-source svg {
+  width: 22px;
+  height: 22px;
+}
+.ability-card-recommend .verified-tooltip {
+  right: -4px;
+  bottom: calc(100% + 8px);
+  z-index: 500;
+}
+.ability-card-topline {
+  display: none;
+}
+.tab-panel[data-tab-panel="feats"] .ability-card-content,
+.tab-panel[data-tab-panel="perks"] .ability-card-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 18px;
+}
+.tab-panel[data-tab-panel="feats"] .ability-card-content h3,
+.tab-panel[data-tab-panel="perks"] .ability-card-content h3 {
+  padding-inline: 18px;
+}
+.heal-filter-reset {
+  color: var(--accent-2);
+  font-weight: 950;
+}
+.move-field-list .move-field.is-danger {
+  border-color: rgba(255, 96, 96, .34);
+  background: linear-gradient(90deg, rgba(255, 80, 80, .22), rgba(255, 80, 80, .075));
+}
+.move-field-list .move-field.is-danger span,
+.move-field-list .move-field.is-danger strong {
+  color: #ffb7b7;
+}
+.move-field-list .move-field.is-success {
+  border-color: rgba(96, 220, 145, .34);
+  background: linear-gradient(90deg, rgba(76, 209, 126, .2), rgba(76, 209, 126, .07));
+}
+.move-field-list .move-field.is-success span,
+.move-field-list .move-field.is-success strong {
+  color: #b9f7cc;
+}
+.move-field-list .move-field.is-info {
+  border-color: rgba(106, 171, 255, .34);
+  background: linear-gradient(90deg, rgba(82, 151, 255, .22), rgba(82, 151, 255, .075));
+}
+.move-field-list .move-field.is-info span,
+.move-field-list .move-field.is-info strong {
+  color: #bed8ff;
+}
+
+/* v20: метки рекомендаций и цвета полей приёмов */
+.verified-source::after {
+  content: none;
+  display: none;
+}
+.verified-tooltip {
+  bottom: calc(100% - 1px);
+  pointer-events: none;
+}
+.verified-source:hover .verified-tooltip,
+.verified-source:focus-visible .verified-tooltip,
+.verified-source:focus-within .verified-tooltip,
+.verified-tooltip:hover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.ability-card-recommend {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 80;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+}
+.ability-card-recommend .verified-source {
+  width: 36px;
+  height: 36px;
+  flex-basis: 36px;
+  pointer-events: auto;
+  color: var(--accent-2);
+}
+.ability-card-recommend .verified-source svg,
+.tab-panel[data-tab-panel="feats"] .ability-card-recommend .verified-source svg,
+.tab-panel[data-tab-panel="perks"] .ability-card-recommend .verified-source svg {
+  width: 26px;
+  height: 26px;
+}
+.ability-card-recommend .verified-tooltip {
+  right: 0;
+  z-index: 1000;
+}
+.tab-panel[data-tab-panel="feats"] .feat-card.ability-like-card,
+.tab-panel[data-tab-panel="perks"] .perk-card.ability-like-card,
+.tab-panel[data-tab-panel="feats"] .ability-tier,
+.tab-panel[data-tab-panel="perks"] .ability-tier,
+.tab-panel[data-tab-panel="feats"] .ability-tier-cards,
+.tab-panel[data-tab-panel="perks"] .ability-tier-cards,
+.tab-panel[data-tab-panel="perks"] .perk-card-grid {
+  overflow: visible;
+}
+.tab-panel[data-tab-panel="feats"] .ability-card-content h3,
+.tab-panel[data-tab-panel="perks"] .ability-card-content h3 {
+  padding-inline: 0;
+  min-height: 2.4em;
+}
+.hero-page .move-field-list .move-field.is-danger,
+.hero-page .move-field.is-danger {
+  border-color: rgba(255, 87, 87, .56);
+  background: linear-gradient(90deg, rgba(255, 66, 66, .34), rgba(255, 66, 66, .10));
+  color: #ffd3d3;
+}
+.hero-page .move-field-list .move-field.is-danger span,
+.hero-page .move-field-list .move-field.is-danger strong,
+.hero-page .move-field.is-danger span,
+.hero-page .move-field.is-danger strong {
+  color: #ffd3d3;
+}
+.hero-page .move-field-list .move-field.is-success,
+.hero-page .move-field.is-success {
+  border-color: rgba(87, 220, 142, .52);
+  background: linear-gradient(90deg, rgba(54, 190, 115, .30), rgba(54, 190, 115, .09));
+  color: #c8ffd8;
+}
+.hero-page .move-field-list .move-field.is-success span,
+.hero-page .move-field-list .move-field.is-success strong,
+.hero-page .move-field.is-success span,
+.hero-page .move-field.is-success strong {
+  color: #c8ffd8;
+}
+.hero-page .move-field-list .move-field.is-info,
+.hero-page .move-field.is-info {
+  border-color: rgba(82, 155, 255, .54);
+  background: linear-gradient(90deg, rgba(60, 126, 235, .30), rgba(60, 126, 235, .09));
+  color: #d3e5ff;
+}
+.hero-page .move-field-list .move-field.is-info span,
+.hero-page .move-field-list .move-field.is-info strong,
+.hero-page .move-field.is-info span,
+.hero-page .move-field.is-info strong {
+  color: #d3e5ff;
+}
+
+/* v21: рекомендации из данных и поиск по таблицам */
+.table-block {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.table-block .table-wrap {
+  margin-bottom: 0;
+}
+.table-search-box {
+  width: min(100%, 520px);
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 850;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.table-search-box input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
+  border-radius: 15px;
+  padding: 0 14px;
+  background: rgba(18, 13, 11, .94);
+  color: var(--text);
+  font: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+  outline: none;
+}
+.table-search-box input:focus {
+  border-color: color-mix(in srgb, var(--accent) 58%, var(--line));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 13%, transparent);
+}
+.sortable-table tbody tr.is-last-visible-row td {
+  border-bottom: 0;
+}
+.sortable-table tbody tr.table-empty-row:not([hidden]) td {
+  border-bottom: 0;
+}
+.table-wrap {
+  background-clip: padding-box;
+}
+.verified-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.verified-source:hover .verified-tooltip,
+.verified-source:focus-visible .verified-tooltip,
+.verified-source:focus-within .verified-tooltip {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.verified-tooltip:hover {
+  visibility: visible;
+}
+
+
+/* Постер героя: отдельный слой изображения, чтобы баннеры не зависели от CSS-переменной URL. */
+.detail-poster-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .96;
+  filter: saturate(1.02) contrast(1.03);
+}
+.detail-poster::before { z-index: 1; }
+.detail-poster::after { z-index: 1; }
+.detail-poster.is-missing {
+  background-image: linear-gradient(135deg, rgba(255, 190, 92, .12), transparent 44%), var(--hero-gradient);
+}
+
+/* Таблицы добиваний используют тот же активный столбец сортировки и анимацию стрелки, что и таблицы героя. */
+.execution-table .th-sort .sort-arrow-one {
+  transition: transform var(--speed-fast), opacity var(--speed-fast);
+}
+.execution-table th.is-active-sort,
+.execution-table td.is-active-sort {
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  color: var(--text);
+}
+
+/* Оценка в модалке перка остаётся нейтральной и не наследует цвет редкости/уровня. */
+.perk-modal-tint .modal-rating,
+.perk-modal-tint .modal-rating strong {
+  color: var(--text);
+}
+.perk-modal-tint .modal-rating span {
+  color: var(--muted);
+}
+
+/* Метки типа способности: активная — светло-зелёная, пассивная — нейтрально-серая. */
+.ability-badge.is-active {
+  color: #1a2b12;
+  background: linear-gradient(135deg, #b9ff72, #78d64c);
+  border-color: rgba(185, 255, 114, .42);
+}
+.ability-badge.is-passive {
+  color: color-mix(in srgb, var(--text) 78%, #b8b8b8);
+  background: rgba(180, 180, 180, .13);
+  border-color: rgba(190, 190, 190, .24);
+}
+.verified-tooltip,
+.ability-card-recommend .verified-tooltip,
+.tab-panel[data-tab-panel="feats"] .verified-tooltip,
+.tab-panel[data-tab-panel="perks"] .verified-tooltip {
+  background: #18120e;
+  backdrop-filter: none;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .55);
+}
+
+.ability-badge.is-active {
+  color: #13250f;
+  background: linear-gradient(135deg, #c6ff77, #7ed957);
+  border-color: rgba(198, 255, 119, .62);
+}
+
+.ability-badge.is-passive {
+  color: #ded7ca;
+  background: rgba(170, 170, 170, .16);
+  border-color: rgba(196, 196, 196, .28);
+}
+
+/* Панель таблицы добиваний: поиск и счётчик вынесены из поля поиска. */
+.table-toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+}
+.table-toolbar .table-search-box {
+  flex: 0 1 520px;
+}
+.table-count-stat {
+  flex: 0 0 auto;
+  align-self: center;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.table-count-stat strong {
+  color: var(--accent);
+  font-size: 1rem;
+}
+@media (max-width: 720px) {
+  .table-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .table-count-stat {
+    align-self: flex-start;
+  }
+}

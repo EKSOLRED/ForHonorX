@@ -1,0 +1,59 @@
+/* === КАРТА ПОДКЛЮЧЕНИЯ CSS-МОДУЛЕЙ ===
+   Этот файл только собирает стили по слоям.
+   Правки вноси в конкретные модули ниже, а не в общий монолит. */
+
+@import url("./core/00-theme.css");
+@import url("./core/01-base.css");
+@import url("./core/02-layout.css");
+@import url("./core/03-components.css");
+
+@import url("./pages/01-pages-main.css");
+@import url("./pages/02-hero-insights.css");
+@import url("./pages/03-compare.css");
+@import url("./pages/04-build.css");
+@import url("./pages/05-picker-controls.css");
+@import url("./pages/06-tierlists.css");
+@import url("./pages/90-fixes-hero-profile.css");
+@import url("./pages/91-fixes-tables-tooltips.css");
+@import url("./pages/92-fixes-guides-media-contributors.css");
+
+@import url("./responsive/01-responsive-main.css");
+@import url("./responsive/90-responsive-fixes.css");
+
+@import url("./pages/93-hotfix-tierlists-tooltips.css");
+@import url("./pages/94-tierlists-v2-hero-ranks.css");
+@import url("./pages/95-tierlists-polish.css");
+@import url("./pages/96-polish-round-2.css");
+@import url("./pages/97-current-fixes.css");
+@import url("./pages/98-polish-round-4.css");
+@import url("./pages/99-requested-hotfix.css");
+@import url("./pages/100-requested-round.css");
+@import url("./pages/101-final-polish.css");
+@import url("./pages/102-current-fixes.css");
+@import url("./pages/103-current-requested-clean.css");
+@import url("./pages/104-current-requested-fixes.css");
+
+@import url("./pages/105-unique-card-glow.css");
+@import url("./pages/106-move-card-recovery-layout.css");
+@import url("./pages/107-voice-lines.css");
+@import url("./pages/108-current-followup-fixes.css");
+@import url("./pages/109-final-touch-fixes.css");
+@import url("./pages/110-mechanic-home-poster-tweaks.css");
+@import url("./pages/111-perk-builder-table.css");
+@import url("./pages/112-modal-perk-gender-fixes.css");
+@import url("./pages/113-reputation-icon-build-table.css");
+@import url("./pages/114-home-patchnotes.css");
+@import url("./pages/115-move-cards-v2.css");
+@import url("./pages/116-current-user-fixes.css");
+@import url("./pages/117-home-menu-redesign.css");
+@import url("./pages/118-patches-search-icons.css");
+@import url("./pages/119-news-slider-detail-spacing.css");
+@import url("./pages/120-news-patchnotes-sources.css");
+@import url("./pages/121-mobile-menu-modal-vertical-cards.css");
+@import url("./pages/122-menu-modal-followup-fixes.css");
+@import url("./pages/123-card-modal-followup.css");
+@import url("./pages/124-move-card-real-fix.css");
+@import url("./pages/125-modal-center-fix.css");
+
+@import url("./core/99-animations.css");
+@import url("pages/101-dishonor-contributor.css");

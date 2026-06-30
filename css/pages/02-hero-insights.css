@@ -1,0 +1,33 @@
+/* Инсайты героя */
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.insight-grid article,
+.compare-verdict,
+.compare-card,
+.build-panel,
+.build-summary {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,.035);
+  box-shadow: var(--shadow-soft);
+}
+
+.insight-grid article {
+  padding: 18px;
+}
+
+.insight-list {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.insight-list.compact {
+  line-height: 1.45;
+}

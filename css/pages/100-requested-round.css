@@ -1,0 +1,226 @@
+/* Запрошенный раунд: полировка макета, фильтра наказаний, мобильного меню и тир-листов. */
+
+/* 1. Широкий макет увеличил карточки героев: оставляем ширину страницы, но уплотняем каталог. */
+.heroes-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+.hero-card-compact {
+  min-height: 238px;
+  aspect-ratio: 4 / 5;
+}
+.hero-card-nameplate {
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px;
+  border-radius: 14px;
+}
+.hero-card-nameplate h3 {
+  font-size: clamp(.92rem, .68rem + .48vw, 1.12rem);
+}
+.hero-type-tag-top {
+  top: 10px;
+  right: 10px;
+  font-size: .68rem;
+  padding: 6px 8px;
+}
+.hero-card-compact .faction-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 13px;
+}
+.hero-card-compact .faction-badge img {
+  width: 25px;
+  height: 25px;
+}
+
+/* 2. Разделы перков сгруппированы по типу: делаем фильтры перков и способностей чище. */
+.catalog-filter-stack,
+#featKindFilters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+.catalog-filter-stack .filter-group,
+#featKindFilters .filter-group {
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 228, 184, .05), rgba(0, 0, 0, .1));
+  padding: 14px;
+  box-shadow: var(--shadow-soft);
+}
+.catalog-filter-stack .filter-group > span,
+#featKindFilters .filter-group > span {
+  display: block;
+  margin: 0 0 10px;
+  color: var(--accent-2);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.catalog-filter-stack .filter-chips,
+#featKindFilters .filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.catalog-filter-stack .chip,
+#featKindFilters .chip {
+  border-radius: 999px;
+}
+.perk-type-tier .ability-tier-label {
+  background: linear-gradient(180deg, rgba(255, 207, 119, .18), rgba(0, 0, 0, .12));
+}
+
+/* 3. Фильтр наказаний открывается под своим столбцом, как фильтр лечения в добиваниях. */
+.punishment-table .th-filter {
+  position: relative;
+}
+.punishment-table .heal-filter-menu,
+.punishment-table .heal-filter-menu.is-floating-filter {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translateX(-50%);
+  max-height: none;
+  overflow: visible;
+  overscroll-behavior: auto;
+  contain: none;
+  z-index: 10060;
+}
+.punishment-table .heal-filter-option,
+.punishment-table .heal-filter-reset {
+  white-space: nowrap;
+}
+
+/* Числовые столбцы наказаний подстраиваются под значения, а заголовки остаются в одну строку. */
+.punishment-table th:nth-child(3),
+.punishment-table td:nth-child(3),
+.punishment-table th:nth-child(4),
+.punishment-table td:nth-child(4) {
+  width: 1%;
+  min-width: max-content;
+  white-space: nowrap;
+}
+.punishment-table th:nth-child(3),
+.punishment-table th:nth-child(4) {
+  min-width: 118px;
+}
+
+/* 4. Тактический постер карты: широкому макету нужна большая высота. */
+.map-poster-frame.is-tactical {
+  height: clamp(560px, 50vw, 760px);
+  min-height: 560px;
+}
+.map-poster-frame.is-tactical img {
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* 5. Портреты сравнения: поднимаем изображение персонажа внутри карточки. */
+.compare-portrait img {
+  object-position: center 14%;
+  transform: scale(1.08);
+}
+
+/* 6. Колонка действий в пользовательском тир-листе: убираем пустоту и держим кнопки в одну строку. */
+.tier-table-row {
+  grid-template-columns: 78px minmax(0, 1fr) 228px;
+}
+.tier-row-tools {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 7px;
+  padding: 8px;
+}
+.tier-row-tools .tier-icon-btn {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+}
+.tier-hero-token {
+  touch-action: none;
+}
+
+/* 7. Мобильное бургер-меню: непрозрачное, прокручиваемое, фон страницы заблокирован. */
+html.menu-open,
+body.menu-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+@media (max-width: 1160px) {
+  .site-nav {
+    max-height: calc(100dvh - var(--header-height) - 24px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #120d0b;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    z-index: 1000;
+  }
+  .site-nav.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .site-nav .nav-group.is-open .nav-submenu {
+    max-height: none;
+    overflow: visible;
+  }
+  .nav-submenu {
+    background: rgba(255,255,255,.045);
+  }
+}
+
+/* 8. Мобильные тир-листы: горизонтальная прокрутка таблицы и touch-перетаскивание. */
+@media (max-width: 860px) {
+  .tier-table {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tier-table-row {
+    min-width: 940px;
+    grid-template-columns: 78px minmax(620px, 1fr) 228px;
+  }
+  .tier-table-locked .tier-table-row {
+    min-width: 820px;
+    grid-template-columns: 78px minmax(720px, 1fr) 0;
+  }
+  .tier-row-tools {
+    grid-column: auto;
+    justify-content: flex-start;
+  }
+}
+
+/* 9. Мобильный постер героя: метка пола над рангами и по центру. */
+@media (max-width: 760px) {
+  .hero-detail-poster .hero-gender-tags {
+    left: 50%;
+    right: auto;
+    bottom: calc(clamp(18px, 6vw, 36px) + 112px);
+    transform: translateX(-50%);
+    justify-content: center;
+    width: max-content;
+    max-width: calc(100% - 36px);
+  }
+}
+
+/* 10. Мобильная подсказка источника профессионального тир-листа открывается вправо, а не за экран. */
+@media (max-width: 560px) {
+  .tierlists-page .tierlist-source.tierlist-source-star .verified-tooltip {
+    left: 0;
+    right: auto;
+    width: min(300px, calc(100vw - 36px));
+    transform: translate(0, 8px) scale(.98);
+  }
+  .tierlists-page .tierlist-source.tierlist-source-star:hover .verified-tooltip,
+  .tierlists-page .tierlist-source.tierlist-source-star:focus-visible .verified-tooltip,
+  .tierlists-page .tierlist-source.tierlist-source-star:focus-within .verified-tooltip {
+    transform: translate(0, 0) scale(1);
+  }
+}

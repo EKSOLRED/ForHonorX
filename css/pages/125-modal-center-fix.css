@@ -1,0 +1,83 @@
+/* === ИСПРАВЛЕНИЕ ЦЕНТРОВКИ МОБИЛЬНЫХ МОДАЛЬНЫХ ОКОН === */
+/*
+  Кнопка закрытия на телефоне закреплена отдельно от карточки, поэтому тело модалки
+  должно центрироваться само по себе. Эти правила перекрывают прошлое поведение,
+  где верхний padding сдвигал короткие окна и видеоплеер вверх.
+*/
+@media (max-width: 640px) {
+  .modal.is-open {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .item-modal.modal.is-open:not(.is-perk-builder-modal),
+  .home-mini-modal.modal.is-open,
+  .video-player-modal.modal.is-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: max(62px, calc(env(safe-area-inset-top) + 54px)) 12px max(22px, env(safe-area-inset-bottom));
+  }
+
+  .item-modal.modal.is-open:not(.is-perk-builder-modal) .item-modal-card,
+  .home-mini-modal.modal.is-open .modal-card {
+    width: min(100%, 900px);
+    max-height: calc(100vh - 98px);
+    max-height: calc(100dvh - 98px);
+    margin: auto;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .video-player-modal.modal.is-open {
+    padding-top: max(62px, calc(env(safe-area-inset-top) + 54px));
+  }
+
+  .video-player-modal.modal.is-open .video-player-shell {
+    width: min(100%, 960px);
+    max-height: calc(100vh - 104px);
+    max-height: calc(100dvh - 104px);
+    margin: auto;
+    align-self: center;
+    justify-self: center;
+    overflow: visible;
+  }
+
+  .video-player-modal.is-open .video-player-topbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 16px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .video-player-modal.is-open .video-source-tabs {
+    justify-self: center;
+    margin-inline: auto;
+    max-width: min(100%, 520px);
+    transform: none;
+  }
+
+  .video-player-modal.is-open .video-player-close,
+  .item-modal.modal.is-open:not(.is-perk-builder-modal) .modal-close,
+  .home-mini-modal.modal.is-open .modal-close {
+    position: fixed;
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+    margin: 0;
+    z-index: 1300;
+  }
+
+  .video-player-modal.is-open .video-player-card {
+    width: 100%;
+    max-height: calc(100vh - 168px);
+    max-height: calc(100dvh - 168px);
+  }
+}

@@ -1,0 +1,639 @@
+/* Текущие правки: закреплённый фильтр наказаний, подсказки/скролл тир-листов, цвета заголовков перков, hover главной. */
+
+/* Фильтр наказаний остаётся под своим заголовком таблицы и прокручивается вместе с контентом. */
+#punishmentFilterPortal {
+  position: absolute;
+  top: var(--fh-filter-top, 96px);
+  left: var(--fh-filter-left, 50vw);
+  width: var(--fh-filter-width, min(420px, calc(100vw - 24px)));
+  max-width: calc(100vw - 24px);
+  max-height: min(390px, var(--fh-filter-max-height, 390px));
+  transform: translateX(-50%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  z-index: 150000;
+}
+
+/* Подсказки тир-листа: обычная локальная подсказка, не фиксированная панель окна. */
+.tierlist-card,
+.tierlists-stack,
+.tierlists-tab-panel,
+.tierlist-card-head,
+.tierlist-title-line {
+  overflow: visible;
+}
+
+.tierlist-source.tierlist-source-star .verified-tooltip,
+.tierlists-page .tierlist-source.tierlist-source-star .verified-tooltip {
+  position: absolute;
+  left: 50%;
+  right: auto;
+  top: auto;
+  bottom: calc(100% + 12px);
+  width: min(320px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  transform: translate(-50%, 8px) scale(.98);
+}
+
+.tierlist-source.tierlist-source-star:hover .verified-tooltip,
+.tierlist-source.tierlist-source-star:focus-visible .verified-tooltip,
+.tierlist-source.tierlist-source-star:focus-within .verified-tooltip,
+.tierlist-source.tierlist-source-star .verified-tooltip:hover,
+.tierlists-page .tierlist-source.tierlist-source-star:hover .verified-tooltip,
+.tierlists-page .tierlist-source.tierlist-source-star:focus-visible .verified-tooltip,
+.tierlists-page .tierlist-source.tierlist-source-star:focus-within .verified-tooltip,
+.tierlists-page .tierlist-source.tierlist-source-star .verified-tooltip:hover {
+  transform: translate(-50%, 0) scale(1);
+}
+
+@media (max-width: 640px) {
+  .tierlists-page .tierlist-source.tierlist-source-star .verified-tooltip {
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: auto;
+    bottom: calc(100% + 10px);
+    width: min(300px, calc(100vw - 34px));
+    max-width: calc(100vw - 34px);
+    transform: translateY(8px) scale(.98);
+  }
+
+  .tierlists-page .tierlist-source.tierlist-source-star:hover .verified-tooltip,
+  .tierlists-page .tierlist-source.tierlist-source-star:focus-visible .verified-tooltip,
+  .tierlists-page .tierlist-source.tierlist-source-star:focus-within .verified-tooltip,
+  .tierlists-page .tierlist-source.tierlist-source-star .verified-tooltip:hover {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Таблицы тир-листов сохраняют горизонтальную прокрутку на мобильных после последующих правок. */
+@media (max-width: 860px) {
+  .tierlist-card {
+    overflow: visible;
+  }
+
+  .tier-table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tier-table-row {
+    width: 940px;
+    max-width: none;
+    grid-template-columns: 78px 634px 228px;
+  }
+
+  .tier-table-locked .tier-table-row {
+    width: 860px;
+    max-width: none;
+    grid-template-columns: 78px 782px 0;
+  }
+
+  .tierlist-card-head .btn,
+  .tier-editor-actions .btn {
+    max-width: 100%;
+  }
+}
+
+/* Цвета разделов перков не меняются при hover/focus. */
+.perk-type-tier.perk-type-attack .ability-tier-label,
+.perk-type-tier.perk-type-attack .ability-tier-label:hover,
+.perk-type-tier.perk-type-attack .ability-tier-label:focus,
+.perk-type-tier.perk-type-attack:hover .ability-tier-label {
+  color: #ffd8d8;
+  border-color: rgba(255, 97, 97, .48);
+  background: linear-gradient(180deg, rgba(126, 23, 23, .48), rgba(40, 10, 10, .34));
+  box-shadow: inset 0 0 0 1px rgba(255, 132, 132, .12);
+}
+
+.perk-type-tier.perk-type-defense .ability-tier-label,
+.perk-type-tier.perk-type-defense .ability-tier-label:hover,
+.perk-type-tier.perk-type-defense .ability-tier-label:focus,
+.perk-type-tier.perk-type-defense:hover .ability-tier-label {
+  color: #d9f0ff;
+  border-color: rgba(93, 190, 255, .5);
+  background: linear-gradient(180deg, rgba(20, 76, 118, .5), rgba(8, 31, 52, .36));
+  box-shadow: inset 0 0 0 1px rgba(142, 215, 255, .12);
+}
+
+.perk-type-tier.perk-type-support .ability-tier-label,
+.perk-type-tier.perk-type-support .ability-tier-label:hover,
+.perk-type-tier.perk-type-support .ability-tier-label:focus,
+.perk-type-tier.perk-type-support:hover .ability-tier-label {
+  color: #dfffd3;
+  border-color: rgba(145, 242, 111, .48);
+  background: linear-gradient(180deg, rgba(45, 111, 39, .5), rgba(14, 45, 17, .36));
+  box-shadow: inset 0 0 0 1px rgba(186, 255, 159, .12);
+}
+
+/* Панели с изображениями на главной: отключаем общий светящийся hover-слой. */
+.home-hero {
+  isolation: isolate;
+}
+
+.home-hero .hero-bg-media {
+  z-index: 0;
+}
+
+.home-sparks {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.home-sparks span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #ffd37a;
+  box-shadow: 0 0 10px rgba(255, 183, 72, .84), 0 0 2px rgba(255, 255, 255, .86);
+  opacity: 0;
+  transform: translate3d(0, 0, 0) rotate(28deg) scale(var(--s));
+  animation: homeSparkDrift 7.8s linear infinite;
+  animation-delay: var(--d);
+  will-change: transform, opacity;
+}
+
+.home-sparks span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  width: 18px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 194, 91, .72), transparent);
+  transform: translateY(-50%);
+}
+
+@keyframes homeSparkDrift {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(28deg) scale(var(--s));
+  }
+  12%,
+  58% {
+    opacity: .86;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(54px, var(--travel), 0) rotate(28deg) scale(var(--s));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-sparks span {
+    animation: none;
+    opacity: .28;
+  }
+}
+
+@media (max-width: 640px), (update: slow) {
+  .home-sparks span:nth-child(n+6) {
+    display: none;
+  }
+}
+
+.home-panel-factions:hover::after,
+.home-panel-modes:hover::after,
+.home-panel-combat:hover::after {
+  opacity: 1;
+  transform: none;
+}
+
+.home-panel-factions::before,
+.home-panel-modes::before,
+.home-panel-combat::before {
+  transition: none;
+}
+
+/* Карточки главной: более насыщенный hover без дополнительного скрипта и изменения макета. */
+.quick-card,
+.home-panel-factions,
+.home-panel-modes,
+.home-panel-combat {
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    background 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.quick-card > *,
+.home-panel-factions > *,
+.home-panel-modes > *,
+.home-panel-combat > * {
+  position: relative;
+  z-index: 2;
+}
+
+.quick-card {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--bg-card) 94%, #241510), color-mix(in srgb, var(--bg-card) 76%, transparent));
+}
+
+.quick-card::before {
+  z-index: 0;
+  opacity: .1;
+  background:
+    radial-gradient(circle at 84% 16%, rgba(255, 207, 119, .44), transparent 20%),
+    linear-gradient(115deg, transparent 0 28%, rgba(255, 230, 176, .08) 42%, transparent 56%),
+    repeating-linear-gradient(135deg, transparent 0 15px, rgba(255,255,255,.11) 15px 16px);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 260ms ease, transform 420ms ease;
+}
+
+.quick-card::after {
+  inset: 1px;
+  height: auto;
+  z-index: 1;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 207, 119, .22), transparent 32%),
+    radial-gradient(circle at 16% 100%, rgba(183, 52, 34, .2), transparent 38%);
+  opacity: 0;
+  transform: translate3d(-12px, 10px, 0);
+  transition: opacity 260ms ease, transform 360ms ease;
+  pointer-events: none;
+}
+
+.quick-card:hover,
+.quick-card:focus-visible {
+  transform: translate3d(0, -7px, 0);
+  border-color: rgba(255, 207, 119, .46);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--bg-card) 90%, #2f1c12), color-mix(in srgb, var(--bg-card) 68%, #120907));
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .34), 0 0 0 1px rgba(255, 207, 119, .08);
+  outline: none;
+}
+
+.quick-card:hover::before,
+.quick-card:focus-visible::before {
+  opacity: .24;
+  transform: translate3d(-8px, 0, 0);
+}
+
+.quick-card:hover::after,
+.quick-card:focus-visible::after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.quick-card span,
+.quick-card h3 {
+  transition: color 260ms ease, transform 260ms ease, text-shadow 260ms ease;
+}
+
+.quick-card:hover span,
+.quick-card:focus-visible span {
+  color: #ffd98c;
+  text-shadow: 0 0 18px rgba(255, 207, 119, .34);
+}
+
+.quick-card:hover h3,
+.quick-card:focus-visible h3 {
+  color: #fff4df;
+  transform: translate3d(0, -2px, 0);
+}
+
+.home-panel-factions,
+.home-panel-modes,
+.home-panel-combat {
+  border-color: color-mix(in srgb, var(--line) 78%, rgba(255, 207, 119, .26));
+}
+
+.home-panel-factions::before,
+.home-panel-modes::before,
+.home-panel-combat::before {
+  transform: scale(1.01);
+  transition: transform 520ms ease, opacity 260ms ease, filter 260ms ease;
+}
+
+.home-panel-factions::after,
+.home-panel-modes::after,
+.home-panel-combat::after {
+  transition: opacity 260ms ease, filter 260ms ease;
+}
+
+.home-panel-factions:hover,
+.home-panel-factions:focus-within,
+.home-panel-modes:hover,
+.home-panel-modes:focus-within,
+.home-panel-combat:hover,
+.home-panel-combat:focus-within {
+  transform: translate3d(0, -6px, 0);
+  border-color: rgba(255, 207, 119, .5);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, .4), 0 0 0 1px rgba(255, 207, 119, .1);
+}
+
+.home-panel-factions:hover::before,
+.home-panel-factions:focus-within::before,
+.home-panel-modes:hover::before,
+.home-panel-modes:focus-within::before,
+.home-panel-combat:hover::before,
+.home-panel-combat:focus-within::before {
+  opacity: .48;
+  filter: saturate(1.08) contrast(1.08);
+  transform: scale(1.055);
+}
+
+.home-panel-factions:hover::after,
+.home-panel-factions:focus-within::after,
+.home-panel-modes:hover::after,
+.home-panel-modes:focus-within::after,
+.home-panel-combat:hover::after,
+.home-panel-combat:focus-within::after {
+  opacity: 1;
+  transform: none;
+  filter: brightness(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-card,
+  .home-panel-factions,
+  .home-panel-modes,
+  .home-panel-combat,
+  .quick-card::before,
+  .quick-card::after,
+  .home-panel-factions::before,
+  .home-panel-modes::before,
+  .home-panel-combat::before {
+    transition: none;
+  }
+
+  .quick-card:hover,
+  .quick-card:focus-visible,
+  .home-panel-factions:hover,
+  .home-panel-factions:focus-within,
+  .home-panel-modes:hover,
+  .home-panel-modes:focus-within,
+  .home-panel-combat:hover,
+  .home-panel-combat:focus-within {
+    transform: none;
+  }
+}
+
+/* Текущие правки: группировка озвучки, макет видеоплеера, сетка участников, движение постера главной. */
+
+/* Фразы озвучки: разделы, ситуации, пол и примечания. */
+.voice-groups {
+  display: grid;
+  gap: 18px;
+}
+
+.voice-group {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+}
+
+.voice-group h4 {
+  margin: 0;
+  color: var(--accent-2);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+}
+
+.voice-situation-group {
+  display: grid;
+  gap: 10px;
+}
+
+.voice-situation-title {
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent-2);
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.voice-gender-tag {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 850;
+}
+
+/* Обзор героя: краткое описание вынесено из постера. */
+.hero-identity-summary {
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent 62%),
+    color-mix(in srgb, var(--bg-card) 94%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-identity-summary .eyebrow,
+.hero-identity-summary h3,
+.hero-identity-summary p {
+  margin: 0;
+}
+
+.hero-identity-summary h3 {
+  margin-top: 6px;
+  color: var(--accent-2);
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+}
+
+.hero-identity-summary p:last-child {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* Видеокарточки не должны растягиваться на весь контейнер. */
+.guide-video-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
+  justify-content: center;
+  align-items: stretch;
+}
+
+.guide-video-card {
+  width: 100%;
+}
+
+/* Видеоплеер: управление и кнопка закрытия над фреймом, вне окна плеера. */
+.video-player-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  width: min(960px, 94vw);
+  max-height: min(88vh, 860px);
+  animation: modalIn var(--speed) ease both;
+}
+
+.video-player-topbar {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.video-player-topbar h2 {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  line-height: 1.15;
+}
+
+.video-player-topbar .video-source-tabs {
+  max-width: min(520px, 48vw);
+  margin: 0;
+  justify-self: end;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.video-player-close {
+  position: static;
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.video-player-shell .video-player-card {
+  width: 100%;
+  max-height: none;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #050403;
+  box-shadow: var(--shadow);
+}
+
+.video-player-shell .video-player-frame {
+  border-radius: 0;
+}
+
+/* Страница участников: две карточки в ряд, центрированный блок с левым выравниванием строк. */
+.contributors-grid {
+  width: min(100%, 980px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  justify-content: start;
+  align-items: stretch;
+}
+
+.contributor-card,
+.contributor-card:not(.contributor-flip) {
+  grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.modal-socials .social-icon,
+.contributor-discord-icon {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.modal-socials .social-icon::after,
+.contributor-discord-icon::after {
+  content: none;
+  display: none;
+}
+
+.modal-socials .social-svg,
+.contributor-discord-icon .social-svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+  fill: #fff;
+  opacity: .9;
+  transition: opacity var(--speed-fast), transform var(--speed-fast), filter var(--speed-fast);
+}
+
+.modal-socials .social-icon:hover .social-svg,
+.modal-socials .social-icon:focus-visible .social-svg,
+.contributor-discord-icon:hover .social-svg,
+.contributor-discord-icon:focus-visible .social-svg {
+  opacity: 1;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 14px rgba(255,255,255,.18));
+}
+
+/* Постер главной: лёгкое движение за курсором. */
+.home-hero .hero-bg-media {
+  transform: translate3d(var(--home-poster-x, 0), var(--home-poster-y, 0), 0) scale(1.06);
+  will-change: transform;
+  transition: transform 220ms ease-out;
+}
+
+/* Заблокированные профессиональные тир-листы: отключаем нативное перетаскивание изображений. */
+.tier-table-locked .tier-hero-token,
+.tier-table-locked .tier-hero-token img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (max-width: 760px) {
+  .guide-video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .video-player-shell {
+    width: min(96vw, 960px);
+    max-height: 86vh;
+  }
+
+  .video-player-topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .video-player-topbar .video-source-tabs {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: start;
+    max-width: 100%;
+  }
+
+  .contributors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contributor-card,
+  .contributor-card:not(.contributor-flip) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero .hero-bg-media {
+    transition: none;
+    transform: scale(1.04);
+    will-change: auto;
+  }
+}

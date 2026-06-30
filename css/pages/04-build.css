@@ -1,0 +1,100 @@
+/* Подборка */
+.build-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 22px;
+  align-items: start;
+}
+
+.build-main {
+  display: grid;
+  gap: 18px;
+}
+
+.build-panel,
+.build-summary {
+  padding: 20px;
+}
+
+.build-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+
+.build-option {
+  min-height: 168px;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  align-content: center;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-lg);
+  color: var(--text);
+  background: rgba(0,0,0,.18);
+  cursor: pointer;
+  text-align: center;
+  padding: 16px;
+  transition: transform var(--speed-fast), border-color var(--speed-fast), background var(--speed-fast);
+}
+
+.build-option:hover:not(:disabled),
+.build-option.is-active {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: rgba(214,172,95,.1);
+}
+
+.build-option:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+
+.build-option-icon {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+}
+
+.build-option-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.counter-pill {
+  align-self: center;
+  border: 1px solid rgba(214,172,95,.32);
+  border-radius: 999px;
+  padding: 7px 12px;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.build-summary {
+  position: sticky;
+  top: 92px;
+}
+
+.build-summary-hero {
+  height: 190px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at top, rgba(214,172,95,.18), rgba(255,255,255,.03));
+}
+
+.build-summary-hero img {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.build-warning {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(214,172,95,.08);
+  border: 1px solid rgba(214,172,95,.22);
+}

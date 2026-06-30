@@ -1,0 +1,168 @@
+/* Таблица подбора перков в модальном окне героя. */
+.item-modal.is-perk-builder-modal .item-modal-card {
+  width: min(1180px, calc(100vw - 36px));
+  max-height: min(90vh, 900px);
+}
+
+.perk-builder-modal.perk-builder-table-mode {
+  display: block;
+}
+
+.perk-builder-modal-header {
+  margin-bottom: 12px;
+}
+
+.perk-builder-intro {
+  margin: 0 0 14px;
+  max-width: 900px;
+  color: var(--muted);
+  font-size: .98rem;
+  line-height: 1.55;
+}
+
+.perk-builder-table-wrap {
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.perk-builder-select-table {
+  width: 100%;
+  min-width: 1040px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.perk-builder-select-table th,
+.perk-builder-select-table td {
+  padding: 12px 10px;
+  border-right: 1px solid color-mix(in srgb, var(--line) 58%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.perk-builder-select-table th:last-child,
+.perk-builder-select-table td:last-child {
+  border-right: 0;
+}
+
+.perk-builder-select-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: color-mix(in srgb, var(--bg-elevated) 92%, #000 8%);
+  color: var(--accent-2);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.perk-builder-select-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.perk-builder-tier,
+.perk-builder-option {
+  font-weight: 900;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.perk-builder-tier {
+  width: 150px;
+  min-width: 150px;
+  line-height: 1.25;
+}
+
+.perk-builder-option {
+  width: 112px;
+  min-width: 112px;
+}
+
+.perk-builder-pick span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 108px;
+  padding: 7px 10px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--text);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.perk-builder-pick em {
+  color: color-mix(in srgb, var(--accent-2) 76%, var(--text));
+  font-style: normal;
+  font-size: .78em;
+  letter-spacing: .02em;
+}
+
+.perk-builder-empty {
+  color: color-mix(in srgb, var(--muted) 38%, transparent);
+}
+
+.perk-builder-row.rarity-common .perk-builder-tier,
+.perk-builder-row.rarity-common .perk-builder-option { background: #9b9b9b; color: #111; }
+.perk-builder-row.rarity-rare .perk-builder-tier,
+.perk-builder-row.rarity-rare .perk-builder-option { background: #43bce9; color: #081018; }
+.perk-builder-row.rarity-heroic .perk-builder-tier,
+.perk-builder-row.rarity-heroic .perk-builder-option { background: #a06df2; color: #fff; }
+.perk-builder-row.rarity-epic .perk-builder-tier,
+.perk-builder-row.rarity-epic .perk-builder-option { background: #e3b240; color: #111; }
+.perk-builder-row.rarity-legendary .perk-builder-tier,
+.perk-builder-row.rarity-legendary .perk-builder-option { background: #41d7c7; color: #061514; }
+
+.perk-builder-notes {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--line));
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,.035);
+}
+
+.perk-builder-notes strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent-2);
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.perk-builder-notes ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .item-modal.is-perk-builder-modal .item-modal-card {
+    width: calc(100vw - 18px);
+  }
+
+  .perk-builder-select-table {
+    min-width: 940px;
+  }
+
+  .perk-builder-select-table th,
+  .perk-builder-select-table td {
+    padding: 10px 8px;
+  }
+
+  .perk-builder-pick span {
+    min-width: 88px;
+    padding-inline: 8px;
+    font-size: .86rem;
+  }
+}

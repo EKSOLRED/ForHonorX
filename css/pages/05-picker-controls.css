@@ -1,0 +1,309 @@
+/* Элементы выбора */
+.hero-picker-controls,
+.builder-control-grid {
+  display: grid;
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+.hero-picker-controls {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.builder-control-grid {
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+}
+
+.hero-picker,
+.gear-selector {
+  position: relative;
+  display: grid;
+  gap: 8px;
+}
+
+.hero-picker-label {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.hero-picker-toggle {
+  width: 100%;
+  min-height: 58px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius-lg);
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(255,255,255,.075), rgba(0,0,0,.24));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), var(--shadow-soft);
+  cursor: pointer;
+  text-align: left;
+}
+
+.hero-picker-current,
+.hero-picker-option {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.hero-picker-current strong,
+.hero-picker-option strong {
+  display: block;
+  overflow: hidden;
+  color: var(--text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-picker-current small,
+.hero-picker-option small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+.hero-picker-avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 14px;
+  background: radial-gradient(circle at top, rgba(214,172,95,.18), rgba(255,255,255,.04));
+}
+
+.hero-picker-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.picker-chevron {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: var(--accent);
+  transition: transform var(--speed-fast), color var(--speed-fast);
+}
+
+.hero-picker.is-open .picker-chevron,
+.gear-tier-btn.is-active .picker-chevron {
+  transform: rotate(180deg);
+}
+
+.hero-picker-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: var(--radius-lg);
+  background: rgba(18, 13, 11, .98);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero-picker-search {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  background: rgba(0,0,0,.28);
+  color: var(--text);
+  padding: 0 12px;
+}
+
+.hero-picker-list {
+  display: grid;
+  gap: 7px;
+  max-height: 320px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.hero-picker-option {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  color: var(--text);
+  background: rgba(255,255,255,.035);
+  padding: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform var(--speed-fast), background var(--speed-fast), border-color var(--speed-fast);
+}
+
+.hero-picker-option:hover,
+.hero-picker-option.is-active {
+  transform: translateX(2px);
+  border-color: rgba(214,172,95,.34);
+  background: rgba(214,172,95,.1);
+}
+
+.gear-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.gear-tier-btn {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  color: var(--text);
+  background: rgba(0,0,0,.2);
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform var(--speed-fast), border-color var(--speed-fast), background var(--speed-fast);
+}
+
+.gear-tier-btn:hover,
+.gear-tier-btn.is-active {
+  transform: translateY(-2px);
+  border-color: rgba(214,172,95,.38);
+  background: rgba(214,172,95,.1);
+}
+
+.builder-help {
+  margin: -4px 0 14px;
+  color: var(--muted);
+}
+
+.perk-options .build-option {
+  min-height: 210px;
+  align-content: start;
+  align-items: start;
+  grid-auto-rows: auto;
+}
+
+.perk-options .build-option .build-option-icon {
+  justify-self: center;
+}
+
+.perk-options .build-option strong,
+.perk-options .build-option small,
+.perk-options .build-option span:last-child {
+  justify-self: center;
+}
+
+.build-option span:last-child {
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.4;
+}
+
+.rarity-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border-radius: 999px;
+  padding: 4px 9px;
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--muted);
+  background: rgba(255,255,255,.04);
+}
+
+.rarity-common { border-color: rgba(255,255,255,.16); }
+.rarity-rare { border-color: rgba(83,154,255,.38); color: #9fc4ff; }
+.rarity-heroic { border-color: rgba(166,104,255,.42); color: #c7a8ff; }
+.rarity-epic { border-color: rgba(255,178,75,.42); color: #ffd18f; }
+.rarity-legendary { border-color: rgba(255,93,93,.44); color: #ffaaaa; }
+
+.perk-combo-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.perk-combo-list span {
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(0,0,0,.2);
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.build-warning.valid {
+  border-color: rgba(76, 209, 126, .34);
+  background: rgba(76, 209, 126, .08);
+  color: #a7f1c0;
+}
+
+.build-warning.partial {
+  border-color: rgba(214,172,95,.25);
+  background: rgba(214,172,95,.08);
+}
+
+.build-warning.invalid {
+  border-color: rgba(255,95,95,.35);
+  background: rgba(255,95,95,.08);
+  color: #ffb1b1;
+}
+
+.compare-swap {
+  min-height: 48px;
+  align-self: end;
+}
+
+.compare-card .compare-stats {
+  grid-template-columns: 1fr;
+}
+
+.compare-stats strong {
+  font-size: 1.05rem;
+}
+
+.stat-delta {
+  font-size: .9rem;
+  font-weight: 900;
+}
+
+.delta-positive {
+  color: #7ee2a1;
+}
+
+.delta-negative {
+  color: #ff8f8f;
+}
+
+.compare-token-row span.is-shared {
+  border-color: rgba(76, 209, 126, .45);
+  background: rgba(76, 209, 126, .12);
+  color: #b9f7cc;
+}
+
+.compare-verdict-rich {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.compare-verdict-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.compare-verdict-grid div {
+  min-height: 92px;
+}

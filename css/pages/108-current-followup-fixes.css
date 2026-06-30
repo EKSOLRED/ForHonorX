@@ -1,0 +1,181 @@
+/* Дополнительные правки: UI озвучки, видеоплеер, сетка участников и обзор героя. */
+
+/* Фразы озвучки: убираем старое выделение разделов, оставляем группы ситуаций. */
+.voice-group {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.voice-group h4 {
+  display: none;
+}
+
+.voice-situation-title {
+  margin-bottom: 2px;
+}
+
+.voice-translation-row {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+}
+
+.voice-gender-tag {
+  display: inline;
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--accent-2) 76%, var(--muted));
+  font-size: .82rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.voice-translation-text {
+  min-width: 0;
+}
+
+.voice-original span {
+  color: rgba(243, 234, 220, .5);
+  font-size: .92rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+/* Модальное окно участника: делаем иконку Discord заметнее без возврата бейджа. */
+.contributor-modal-card .modal-socials .social-svg,
+.contributor-modal-card .contributor-discord-icon .social-svg {
+  width: 52px;
+  height: 52px;
+}
+
+/* Видеоплеер: центрированный бейдж источника над фреймом, кнопка закрытия отдельно справа. */
+.video-player-topbar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  min-height: 50px;
+  padding: 0 60px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.video-player-topbar .video-source-tabs,
+.video-source-tabs {
+  justify-self: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: min(640px, calc(100vw - 160px));
+  margin: 0;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
+  box-shadow: var(--shadow-soft);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.video-source-tab {
+  padding: 7px 12px;
+  font-weight: 500;
+}
+
+.video-player-close {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+/* Видеокарточки: страница механики тоже использует одиночную guide-video-card вне сетки гайда. */
+.mechanic-video-card {
+  width: min(100%, 320px);
+  justify-self: start;
+}
+
+/* Участники: адаптивные строки с левым выравниванием и более чем двумя карточками при наличии места. */
+.contributors-grid {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  justify-content: start;
+}
+
+.contributor-card,
+.contributor-card:not(.contributor-flip) {
+  width: 100%;
+}
+
+/* Кнопки постера героя: фиксированная нижняя центральная позиция независимо от меток пола. */
+.hero-detail-poster .hero-poster-actions {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: clamp(18px, 3.2vw, 34px);
+  transform: translateX(-50%);
+  justify-content: center;
+  margin: 0;
+  width: max-content;
+  max-width: min(560px, calc(100% - 240px));
+}
+
+.hero-detail-poster .detail-poster-text {
+  padding-bottom: 92px;
+}
+
+/* Обзор героя: блок описания над характеристиками с тем же радиусом углов, что у карточек статов. */
+.hero-identity-summary h3 {
+  display: none;
+}
+
+.hero-identity-summary p:last-child {
+  margin-top: 10px;
+}
+
+.hero-advice-panel .insight-grid article {
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 760px) {
+  .voice-translation-row {
+    flex-wrap: wrap;
+  }
+
+  .video-player-topbar {
+    padding-inline: 0 52px;
+  }
+
+  .video-player-topbar .video-source-tabs,
+  .video-source-tabs {
+    justify-self: start;
+    justify-content: flex-start;
+    max-width: calc(100vw - 120px);
+  }
+
+  .contributors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .hero-detail-poster .hero-poster-actions {
+    bottom: calc(clamp(18px, 6vw, 36px) + 112px + 48px);
+    width: calc(100% - 36px);
+    max-width: none;
+  }
+
+  .hero-detail-poster .detail-poster-text {
+    padding-bottom: 210px;
+  }
+}
