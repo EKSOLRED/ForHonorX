@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ForHonorX — локальный справочник по героям, картам, механикам и терминологии." name="description"/>
+<title>Герои — ForHonorX</title>
+<link href="../css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div aria-hidden="true" class="noise-layer"></div>
+<div id="siteHeader"></div>
+<main class="page-shell">
+<section class="page-title reveal">
+<h1>Персонажи</h1>
+</section>
+<section class="section reveal">
+<div class="toolbar heroes-toolbar">
+<label class="search-box stretch">
+<span>Поиск</span>
+<input id="heroSearch" placeholder="Имя, фракция, класс..." type="search"/>
+</label>
+</div>
+<div class="hero-filter-shell">
+<div aria-label="Hero filters" class="filter-bar hero-filter-bar">
+<div class="filter-group">
+<div aria-label="Фракции" class="filter-chips" id="heroFactionFilter" role="group"></div>
+</div>
+<div class="filter-group filter-group-right">
+<div aria-label="Тип героя" class="filter-chips" id="heroClassFilter" role="group"></div>
+</div>
+<button class="btn btn-ghost btn-small filter-bar-reset" id="heroFiltersReset" type="button">Сбросить</button>
+</div>
+<div aria-live="polite" class="hero-count-stat" id="heroCountStat"></div>
+</div>
+<div class="card-grid heroes-grid" id="heroesGrid"></div>
+</section>
+</main>
+<div id="siteFooter"></div>
+
+<script src="../js/layout.js"></script>
+<script data-page="heroes" src="../js/data/load.js"></script>
+
+<script src="../js/main.js"></script>
+<script src="../js/heroes.js"></script>
+</body>
+</html>

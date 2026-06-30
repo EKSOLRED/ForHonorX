@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ForHonorX — тир листы героев For Honor и редактор своей таблицы." name="description"/>
+<title>Тир листы — ForHonorX</title>
+<link href="../css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div aria-hidden="true" class="noise-layer"></div>
+<div id="siteHeader"></div>
+<main class="page-shell tierlists-page">
+<section class="page-title reveal">
+<h1>Тир листы</h1>
+</section>
+<section class="section reveal">
+<div aria-label="Tier list tabs" class="tabs-nav tierlists-tabs" role="tablist">
+<button aria-selected="true" class="tab-btn is-active" data-tier-tab="pro" role="tab" type="button">От профессионалов</button>
+<button aria-selected="false" class="tab-btn" data-tier-tab="custom" role="tab" type="button">Создать свой +</button>
+</div>
+<div class="tierlists-tab-panel is-active" data-tier-panel="pro" role="tabpanel">
+<p class="tierlists-hint">Эти таблицы можно только скачать.</p>
+<div class="tierlists-stack" id="professionalTierlists"></div>
+</div>
+<div class="tierlists-tab-panel" data-tier-panel="custom" hidden="" role="tabpanel">
+<p class="tierlists-hint">Перетаскивай героев в строки, меняй названия, цвета и фон таблицы.</p>
+<div id="customTierlist"></div>
+</div>
+</section>
+</main>
+<div id="siteFooter"></div>
+
+<script src="../js/layout.js"></script>
+<script data-page="tierlists" src="../js/data/load.js"></script>
+
+<script src="../js/main.js"></script>
+<script src="../js/tierlists.js"></script>
+</body>
+</html>

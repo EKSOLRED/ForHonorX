@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ForHonorX — локальный справочник по героям, картам, механикам и терминологии." name="description"/>
+<title>Карты — ForHonorX</title>
+<link href="../css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div aria-hidden="true" class="noise-layer"></div>
+<div id="siteHeader"></div>
+<main class="page-shell">
+<section class="page-title reveal">
+<h1>Карты</h1>
+</section>
+<section class="section reveal">
+<div class="toolbar maps-toolbar">
+<label class="search-box stretch">
+<span>Поиск</span>
+<input id="mapSearch" placeholder="Название, режим..." type="search"/>
+</label>
+</div>
+<div aria-label="Map filters" class="filter-bar hero-filter-bar map-filter-bar">
+<div class="filter-group">
+<div aria-label="Фракции" class="filter-chips" id="mapFactionFilter" role="group"></div>
+</div>
+<div class="filter-group filter-group-right">
+<div aria-label="Режим" class="filter-chips" id="mapModeFilter" role="group"></div>
+</div>
+<button class="btn btn-ghost btn-small filter-bar-reset" id="mapFiltersReset" type="button">Сбросить</button>
+</div>
+<div class="maps-list" id="mapsGrid"></div>
+</section>
+</main>
+<div id="siteFooter"></div>
+
+<script src="../js/layout.js"></script>
+<script data-page="maps" src="../js/data/load.js"></script>
+
+<script src="../js/main.js"></script>
+<script src="../js/maps.js"></script>
+</body>
+</html>
